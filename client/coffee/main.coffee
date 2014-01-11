@@ -1,11 +1,10 @@
 
 window.boardApp = new BoardApp(boardData)
 
-console.log 'asdfasdfasdfdsaf'
-
-$('#questionWrapper').on 'click', '.answer', ->
-  # event.preventDefault()
-  alert 'holaaaaa'
+$('#questionWrapper').on 'click', '.answer', (event) ->
+  event.preventDefault()
+  alert $(@).data('valid')
+  $(@).closest("#questionWrapper").html('')
 
 
 window.loadQuestion = (category='sport') ->
@@ -27,7 +26,7 @@ window.printQuestion = (questionData) ->
 
   for answerData in questionData.answers
     element = answerHTML.clone().html(answerData.text)
-    element.data("valid", answerData.valid)
+    element.attr("data-valid", answerData.valid)
     answerList.append(element)
 
   delete answersHTML

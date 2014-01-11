@@ -3,7 +3,7 @@ window.questionDB =
       questionText: "Sport question 1"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -15,7 +15,7 @@ window.questionDB =
       questionText: "Sport question 2"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -27,7 +27,7 @@ window.questionDB =
       questionText: "Sport question 3"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -39,7 +39,7 @@ window.questionDB =
       questionText: "Sport question 4"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -51,7 +51,7 @@ window.questionDB =
       questionText: "Sport question 5"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -63,7 +63,7 @@ window.questionDB =
       questionText: "Sport question 6"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -75,7 +75,7 @@ window.questionDB =
       questionText: "Sport question 7"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -87,7 +87,7 @@ window.questionDB =
       questionText: "Sport question 8"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -99,7 +99,7 @@ window.questionDB =
       questionText: "Sport question 9"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -113,7 +113,7 @@ window.questionDB =
       questionText: "History question 1"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -125,7 +125,7 @@ window.questionDB =
       questionText: "History question 2"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -137,7 +137,7 @@ window.questionDB =
       questionText: "History question 3"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -149,7 +149,7 @@ window.questionDB =
       questionText: "History question 4"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -161,7 +161,7 @@ window.questionDB =
       questionText: "History question 5"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -173,7 +173,7 @@ window.questionDB =
       questionText: "History question 6"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -185,7 +185,7 @@ window.questionDB =
       questionText: "History question 7"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -197,7 +197,7 @@ window.questionDB =
       questionText: "History question 8"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -209,7 +209,7 @@ window.questionDB =
       questionText: "History question 9"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -224,7 +224,7 @@ window.questionDB =
       questionText: "Science question 1"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -236,7 +236,7 @@ window.questionDB =
       questionText: "Science question 2"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -248,7 +248,7 @@ window.questionDB =
       questionText: "Science question 3"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -260,7 +260,7 @@ window.questionDB =
       questionText: "Science question 4"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -272,7 +272,7 @@ window.questionDB =
       questionText: "Science question 5"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -284,7 +284,7 @@ window.questionDB =
       questionText: "Science question 6"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -296,7 +296,7 @@ window.questionDB =
       questionText: "Science question 7"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -308,7 +308,7 @@ window.questionDB =
       questionText: "Science question 8"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -320,7 +320,7 @@ window.questionDB =
       questionText: "Science question 9"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -334,7 +334,7 @@ window.questionDB =
         questionText: "Geography question 1"
         answers: [
             text: "Answer 1"
-            value: true
+            valid: true
           ,
             text: "Answer 2"
             valid: false
@@ -346,7 +346,7 @@ window.questionDB =
         questionText: "Geography question 2"
         answers: [
             text: "Answer 1"
-            value: true
+            valid: true
           ,
             text: "Answer 2"
             valid: false
@@ -358,7 +358,7 @@ window.questionDB =
         questionText: "Geography question 3"
         answers: [
             text: "Answer 1"
-            value: true
+            valid: true
           ,
             text: "Answer 2"
             valid: false
@@ -370,7 +370,7 @@ window.questionDB =
         questionText: "Geography question 4"
         answers: [
             text: "Answer 1"
-            value: true
+            valid: true
           ,
             text: "Answer 2"
             valid: false
@@ -382,7 +382,7 @@ window.questionDB =
         questionText: "Geography question 5"
         answers: [
             text: "Answer 1"
-            value: true
+            valid: true
           ,
             text: "Answer 2"
             valid: false
@@ -394,7 +394,7 @@ window.questionDB =
       questionText: "Geography question 6"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -406,7 +406,7 @@ window.questionDB =
       questionText: "Geography question 7"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -418,7 +418,7 @@ window.questionDB =
       questionText: "Geography question 8"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -430,7 +430,7 @@ window.questionDB =
       questionText: "Geography question 9"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -445,7 +445,7 @@ window.questionDB =
         questionText: "Literature question 1"
         answers: [
             text: "Answer 1"
-            value: true
+            valid: true
           ,
             text: "Answer 2"
             valid: false
@@ -457,7 +457,7 @@ window.questionDB =
         questionText: "Literature question 2"
         answers: [
             text: "Answer 1"
-            value: true
+            valid: true
           ,
             text: "Answer 2"
             valid: false
@@ -469,7 +469,7 @@ window.questionDB =
         questionText: "Literature question 3"
         answers: [
             text: "Answer 1"
-            value: true
+            valid: true
           ,
             text: "Answer 2"
             valid: false
@@ -481,7 +481,7 @@ window.questionDB =
         questionText: "Literature question 4"
         answers: [
             text: "Answer 1"
-            value: true
+            valid: true
           ,
             text: "Answer 2"
             valid: false
@@ -493,7 +493,7 @@ window.questionDB =
         questionText: "Literature question 5"
         answers: [
             text: "Answer 1"
-            value: true
+            valid: true
           ,
             text: "Answer 2"
             valid: false
@@ -505,7 +505,7 @@ window.questionDB =
       questionText: "Literature question 6"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -517,7 +517,7 @@ window.questionDB =
       questionText: "Literature question 7"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -529,7 +529,7 @@ window.questionDB =
       questionText: "Literature question 8"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -541,7 +541,7 @@ window.questionDB =
       questionText: "Literature question 9"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -556,7 +556,7 @@ window.questionDB =
         questionText: "Entertainment question 1"
         answers: [
             text: "Answer 1"
-            value: true
+            valid: true
           ,
             text: "Answer 2"
             valid: false
@@ -568,7 +568,7 @@ window.questionDB =
         questionText: "Entertainment question 2"
         answers: [
             text: "Answer 1"
-            value: true
+            valid: true
           ,
             text: "Answer 2"
             valid: false
@@ -580,7 +580,7 @@ window.questionDB =
         questionText: "Entertainment question 3"
         answers: [
             text: "Answer 1"
-            value: true
+            valid: true
           ,
             text: "Answer 2"
             valid: false
@@ -592,7 +592,7 @@ window.questionDB =
         questionText: "Entertainment question 4"
         answers: [
             text: "Answer 1"
-            value: true
+            valid: true
           ,
             text: "Answer 2"
             valid: false
@@ -604,7 +604,7 @@ window.questionDB =
       questionText: "Entertainment question 5"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -616,7 +616,7 @@ window.questionDB =
       questionText: "Entertainment question 6"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -628,7 +628,7 @@ window.questionDB =
       questionText: "Entertainment question 7"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -640,7 +640,7 @@ window.questionDB =
       questionText: "Entertainment question 8"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
@@ -652,7 +652,7 @@ window.questionDB =
       questionText: "Entertainment question 9"
       answers: [
           text: "Answer 1"
-          value: true
+          valid: true
         ,
           text: "Answer 2"
           valid: false
