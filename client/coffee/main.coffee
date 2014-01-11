@@ -1,2 +1,2 @@
-boardApp = new BoardApp()
+window.boardApp = new BoardApp()
 

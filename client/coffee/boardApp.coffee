@@ -1,6 +1,7 @@
 class window.BoardApp
   constructor: ->
     @printBoard()
+    @players = [new Player('Player1'), new Player('Player2')]
 
   throwDice: ->
     Math.floor Math.random() * 6 + 1
@@ -15,3 +16,5 @@ class window.BoardApp
       id = parseInt id.replace('box_', '')
       boxDiv = "<div class=\"box\"> #{id+1} </div>"
       $(box).html boxDiv
+
+
