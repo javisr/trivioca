@@ -1,5 +1,15 @@
 class window.Player
   constructor: (@name) ->
-    @position = 0
-    @pausedTurn = 0
+
+  box = 0
+  waitingTurns = 0
+
+  moveToBox: (newBox) ->
+    box = newBox
+
+  currentBox: ->
+    box
+
+  setWaitingTurns: (turn)->
+    waitingTurns = turns
 
