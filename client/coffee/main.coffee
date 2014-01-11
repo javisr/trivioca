@@ -1,0 +1,2 @@
+boardApp = new BoardApp()
+
