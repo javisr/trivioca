@@ -1,4 +1,5 @@
-window.boardApp = new BoardApp()
+
+window.boardApp = new BoardApp(boardData)
 
 window.loadQuestion = (category) ->
   categoryQuestions = questionDB[category]

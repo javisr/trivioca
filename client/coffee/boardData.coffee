@@ -1,4 +1,4 @@
-[
+window.boardData = [
     # Box 0
     {}
 

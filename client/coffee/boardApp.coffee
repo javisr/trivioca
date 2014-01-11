@@ -1,19 +1,14 @@
 class window.BoardApp
-  constructor: ->
+  constructor: (board_data)->
     @printBoard()
-
-  players = [new Player('Player1'), new Player('Player2')]
-  currentPlayer = @whoStart();
+    boardData = board_data
 
   star: ->
     players[currentPlayer].turn()
 
-  whoStart= ->
+  whoStart = ->
     # TODO change it by a real function
     0
-
-  throwDice: ->
-    Math.floor Math.random() * 6 + 1
 
   printBoard: ->
     @printNumbers()
@@ -27,5 +22,7 @@ class window.BoardApp
       $(box).html boxDiv
 
 
-
+  lastBox = boardData.length
+  players = [new Player('Player1', lastBox), new Player('Player2',lastBox)]
+  currentPlayer = whoStart();
 
