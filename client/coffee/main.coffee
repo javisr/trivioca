@@ -1,10 +1,18 @@
 
 window.boardApp = new BoardApp(boardData)
 
-window.loadQuestion = (category) ->
+console.log 'asdfasdfasdfdsaf'
+
+$('#questionWrapper').on 'click', '.answer', ->
+  # event.preventDefault()
+  alert 'holaaaaa'
+
+
+window.loadQuestion = (category='sport') ->
   categoryQuestions = questionDB[category]
   return null unless categoryQuestions?
   categoryQuestions[Math.floor( Math.random() * categoryQuestions.length)]
+
 
 window.printQuestion = (questionData) ->
   # HTML template
@@ -27,5 +35,7 @@ window.printQuestion = (questionData) ->
   # by default this is hide, showing up!
   questionHTML.css('display', '')
 
-  $("body").append(questionHTML.html())
+  $("#questionWrapper").html(questionHTML.html())
 
+window.showQuestion = ->
+  printQuestion(loadQuestion())
