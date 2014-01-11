@@ -5,6 +5,13 @@ class window.BoardApp
 
   star: ->
     players[currentPlayer].turn()
+    currentPlayer++
+
+  nextTurn: ->
+    if(currentPlayer is players.length)
+      currentPlayer--
+    players[currentPlayer].turn()
+
 
   whoStart = ->
     # TODO change it by a real function

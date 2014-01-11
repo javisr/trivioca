@@ -12,14 +12,18 @@ class window.Player
     box
 
   setWaitingTurns: (turn)->
-    waitingTurns = turns
+    waitingTurns = turn
 
   turn: ->
+    returned = {}
     if waitingTurns is 0
-
-      box += dice.throw()
+        box += dice.throw()
+        box -= (box - lastBox) if (box > lastBox)
+        returned = {'next': false, 'box': box }
     else
       waitingTurns--
+      returned = {'next': true}
+    returned
 
 
 
