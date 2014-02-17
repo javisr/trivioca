@@ -1,20 +1,22 @@
 BoardApp = (function () {
-    var currentPlayer, lastBox, players, whoStart;
+    var currentPlayer, lastBox, players, whoStart,boardData,numPlayer;
 
     function BoardApp(board_data) {
-        var boardData;
+
+        boardData = board_data.boxData;
+        numPlayer = board_data.numPlayer;
         this.printBoard();
-        boardData = board_data;
+
     }
 
-    BoardApp.prototype.star = function () {
+    BoardApp.prototype.start = function () {
         players[currentPlayer].turn();
         return currentPlayer++;
     };
 
     BoardApp.prototype.nextTurn = function () {
         if (currentPlayer === players.length) {
-            currentPlayer--;
+            currentPlayer = 0;
         }
         return players[currentPlayer].turn();
     };
@@ -29,17 +31,22 @@ BoardApp = (function () {
     };
 
     BoardApp.prototype.printNumbers = function () {
-        var box, boxDiv, boxes, id, _i, _len, _results;
+        var box;
+        var boxDiv;
+        var boxes;
+        var id;
+        var results = [];
         boxes = $("#board td");
-        _results = [];
-        for (_i = 0, _len = boxes.length; _i < _len; _i++) {
-            box = boxes[_i];
+
+        //Aquí se puede ver un ejemplo de propiedad molona ^^
+        for ( var i = 0, _len = boxes.length; i < _len; i++) {
+            box = boxes[i];
             id = box.id;
             id = parseInt(id.replace('box_', ''));
             boxDiv = "<div class=\"box\"> " + (id + 1) + " </div>";
-            _results.push($(box).html(boxDiv));
+            results.push($(box).html(boxDiv));
         }
-        return _results;
+        return results;
     };
 
     lastBox = boardData.length;
