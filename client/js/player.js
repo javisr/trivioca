@@ -1,10 +1,12 @@
 Player = (function () {
 
+    //VARIABLES PRIVADAS DE LA CLASE ACCESIBLES SÓLO DESDE MÉTODOS
     var dice; //dado
     var waitingTurns; //Turnos que tiene de penalización el player
     var lastBox; //última casilla del tablero
     var currentBox; //casilla actual
-    var name; //nombre del player
+    //////////////////////////////////////////////////////////////
+
 
     /*
     *  Este es el constructor de la clase Player.
@@ -12,8 +14,8 @@ Player = (function () {
     *  - totalBox: número total de casillas del tablero.
      */
     function Player(name, totalBox) {
-        this.name = name;
-        this.lastBox = totalBox;
+        this.name = name; //nombre del player
+        lastBox = totalBox;  //--> ejemplo de variable privada de la clase.
     }
 
     currentBox = 0;
@@ -26,7 +28,7 @@ Player = (function () {
     * Mover el jugador a la casilla X
     * - newBow: nueva casilla
      */
-    Player.prototype.moveToBox = function (newBox) {
+    Player.prototype.jumpTo = function (newBox) {
         //TODO cotrol that newBox is a int value;
         return currentBox = newBox;
     };
@@ -49,6 +51,7 @@ Player = (function () {
     * tiradas
      */
     Player.prototype.turn = function () {
+        console.log(lastBox);
         var returned = {};
         if (waitingTurns === 0) { //si no tiene turnos de espera
             currentBox += dice["throw"]();
