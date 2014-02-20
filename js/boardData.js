@@ -1,7 +1,7 @@
 boardData = {
     numPlayer: 3,
     boxData: [
-
+        {},
         {},
         {
             success_function: "jumpTo",

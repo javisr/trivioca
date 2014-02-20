@@ -54,7 +54,22 @@ Board = (function () {
     };
 
 
+
     Board.prototype.printBoard = function () {
+      var boxes, num_column, num_rows, table, tbody, td, tr;
+      boxes = boardData.boxData.length;
+      num_column = Math.floor(Math.sqrt(boxes));
+      if (num_column < Math.sqrt(boxes)){
+        num_rows = num_column + 1;
+      }
+        else {
+          num_rows = num_column;
+        }
+      
+      table = document.createElement('table');
+
+      
+      console.log("column"+column + "rows"+rows);
         return this.printNumbers();
     };
 
