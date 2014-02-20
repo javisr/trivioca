@@ -59,8 +59,8 @@ Board = (function () {
     };
 
     Board.prototype.turn = function(){
-        
-      return players[currentPlayer].turn();  
+
+      return players[currentPlayer].turn();
     };
     Board.prototype.printBoard = function () {
         return this.printNumbers();
