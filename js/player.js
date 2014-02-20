@@ -38,6 +38,7 @@ Player = (function () {
     };
 
     Player.prototype.setWaitingTurns = function (turn) {
+        board.nextPlayer();
         return waitingTurns = turn;
     };
 

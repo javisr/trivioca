@@ -3,6 +3,19 @@ board = new Board(boardData);
   $('#questionWrapper').on('click', '.answer', function(event) {
     event.preventDefault();
     alert($(this).data('valid'));
+    var currentPlayer = board.getCurrentPlayer();
+    var boxInfoPosition = boardData.boxData[currentPlayer.currentBox()];
+    var func;
+    var funcArgs;
+    if ($(this).data('valid') == 'true'){
+        func = boxInfoPosition['success_function'];
+        funcArgs = boxInfoPosition['success_function_args'];
+    }else{
+        func = boxInfoPosition['fail_function'];
+        funclArgs = boxInfoPosition['fail_function_args'];
+    }
+    currentPlayer[func](funcArgs);
+    board.turn();
     return $(this).closest("#questionWrapper").html('');
   });
 
