@@ -24,7 +24,7 @@ board = new Board(boardData);
     questionHTML.find(".questionText").html(questionData.questionText);
     answerHTML = questionHTML.find(".answer").remove();
     answerList = questionHTML.find(".answerList");
-    _ref = questionData.answers;
+    _ref = $.shuffle(questionData.answers);
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       answerData = _ref[_i];
       element = answerHTML.clone().html(answerData.text);
