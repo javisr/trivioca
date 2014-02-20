@@ -62,6 +62,10 @@ Player = (function () {
         return returned;
     };
 
+    Player.prototype.repeatTurn = function () {
+      this.turn();
+    }
+
     return Player;
 
 })();

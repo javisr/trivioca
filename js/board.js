@@ -35,7 +35,7 @@ Board = (function () {
     };
 
     Board.prototype.test = function(){
-        console.log(currentPlayer);
+        console.log('Current Player' + currentPlayer);
         console.log(lastBox);
         console.log(numPlayers);
         console.log(players);
@@ -44,13 +44,19 @@ Board = (function () {
     Board.prototype.start = function () {
         players[currentPlayer].turn();
         return currentPlayer++;
+
     };
 
     Board.prototype.nextTurn = function () {
+
+        currentPlayer++;
+
         if (currentPlayer === players.length) {
-            currentPlayer--;
+            currentPlayer = 0;
         }
+
         return players[currentPlayer].turn();
+
     };
 
 
@@ -71,6 +77,12 @@ Board = (function () {
         }
         return _results;
     };
+
+    Board.prototype.getCurrentPlayer = function () {
+
+        return players[currentPlayer];
+
+    }
 
 
     return Board;
