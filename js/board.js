@@ -10,7 +10,7 @@ Board = (function () {
 
         lastBox = data.boxData.length;
         numPlayers = data.numPlayer;
-        players = [new Player('Player1', lastBox), new Player('Player2', lastBox)];
+        players = loadUsers();
         currentPlayer = whoStart();
 
         this.printBoard();
@@ -24,7 +24,14 @@ Board = (function () {
     };
 
     loadUsers = function(){
+        var _players = [];
 
+        for(var i = 1; i<=numPlayers; i++){
+            var _name = 'Player' + i;
+            _players.push(new Player(_name, lastBox));
+        }
+
+        return _players;
     };
 
     Board.prototype.test = function(){

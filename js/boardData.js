@@ -1,5 +1,5 @@
 boardData = {
-    numPlayer: 2,
+    numPlayer: 3,
     boxData: [
 
         {},
