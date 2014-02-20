@@ -20,7 +20,7 @@ Board = (function () {
 
 
     whoStart = function () {
-        return 0;
+        return Math.floor((Math.random()*numPlayers)+1);
     };
 
     loadUsers = function(){
