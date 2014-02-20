@@ -6,7 +6,7 @@ boardData = {
         {
             success_function: "jumpTo",
             success_function_args: 3,
-            fail_function: "waitTurn",
+            fail_function: "setWaitingTurns",
             fail_function_args: 1
         },
         {},
@@ -15,7 +15,7 @@ boardData = {
             fail_function_args: 0
         },
         {
-            fail_function: "waitTurns",
+            fail_function: "setWaitingTurns",
             fail_function_args: 2
         },
         {
@@ -25,7 +25,7 @@ boardData = {
             fail_function_args: 3
         },
         {
-            fail_function: "waitTurns",
+            fail_function: "setWaitingTurns",
             fail_function_args: 1
         },
         {
@@ -33,7 +33,7 @@ boardData = {
             fail_function_args: 6
         },
         {
-            fail_function: "waitTurns",
+            fail_function: "setWaitingTurns",
             fail_function_args: 1
         },
         {
@@ -53,7 +53,7 @@ boardData = {
             fail_function_args: 11
         },
         {
-            fail_function: "waitTurns",
+            fail_function: "setWaitingTurns",
             fail_function_args: 3
         },
         {
