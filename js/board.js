@@ -1,4 +1,4 @@
-BoardApp = (function () {
+Board = (function () {
 
     // VARIABLES PRIVADAS ACCESIBLES DESDE LOS PROTOTYPES
     var currentPlayer, lastBox, players,numPlayers;
@@ -6,7 +6,7 @@ BoardApp = (function () {
     //funciones privadas
     var whoStart, loadUsers;
 
-    function BoardApp(data) {
+    function Board(data) {
 
         lastBox = data.boxData.length;
         numPlayers = data.numPlayer;
@@ -27,19 +27,19 @@ BoardApp = (function () {
 
     };
 
-    BoardApp.prototype.test = function(){
+    Board.prototype.test = function(){
         console.log(currentPlayer);
         console.log(lastBox);
         console.log(numPlayers);
         console.log(players);
     };
 
-    BoardApp.prototype.start = function () {
+    Board.prototype.start = function () {
         players[currentPlayer].turn();
         return currentPlayer++;
     };
 
-    BoardApp.prototype.nextTurn = function () {
+    Board.prototype.nextTurn = function () {
         if (currentPlayer === players.length) {
             currentPlayer--;
         }
@@ -47,11 +47,11 @@ BoardApp = (function () {
     };
 
 
-    BoardApp.prototype.printBoard = function () {
+    Board.prototype.printBoard = function () {
         return this.printNumbers();
     };
 
-    BoardApp.prototype.printNumbers = function () {
+    Board.prototype.printNumbers = function () {
         var box, boxDiv, boxes, id, _i, _len, _results;
         boxes = $("#board td");
         _results = [];
@@ -66,6 +66,6 @@ BoardApp = (function () {
     };
 
 
-    return BoardApp;
+    return Board;
 
 })();
