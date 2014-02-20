@@ -59,27 +59,44 @@ Board = (function () {
     };
 
     Board.prototype.turn = function(){
-        
-      return players[currentPlayer].turn();  
+
+      return players[currentPlayer].turn();
     };
+
     Board.prototype.printBoard = function () {
-        return this.printNumbers();
-    };
+        var boxes, num_columns, num_rows, _i, _j, count;
+        // HTML vars:
+        var table, tbody, tr, td, boxDiv;
 
-    Board.prototype.printNumbers = function () {
-        var box, boxDiv, boxes, id, _i, _len, _results;
-        boxes = $("#board td");
-        _results = [];
-        for (_i = 0, _len = boxes.length; _i < _len; _i++) {
-            box = boxes[_i];
-            id = box.id;
-            id = parseInt(id.replace('box_', ''));
-            boxDiv = "<div class=\"box\"> " + (id + 1) + " </div>";
-            _results.push($(box).html(boxDiv));
+        // Get number of boxes:
+        boxes = boardData.boxData.length;
+        // Get table size : num_columns, num_rows:
+        num_columns = Math.floor(Math.sqrt(boxes));
+        num_rows = (num_columns < Math.sqrt(boxes)) ? num_columns + 1 : num_columns;
+
+        tbody = $(document.createElement('tbody'));
+        count = 0;
+        for (_i = 0; _i < num_rows; _i++) {
+            tr = $(document.createElement('tr'));
+            for (_j = 0; _j < num_columns && count < boxes; _j++) {
+                // Create td:
+                td = $(document.createElement('td'));
+                td.addClass('box_' + ++count);
+                boxDiv = "<div class=\"box\"> " + count + " </div>";
+                td.append(boxDiv);
+                // Add new td to tr:
+                tr.append(td);
+            }
+            // Add new tr to tbody:
+            tbody.append(tr);
         }
-        return _results;
-    };
 
+        // Generate table:
+        table = $(document.createElement('table'));
+        table.attr('id','table-board');
+        table.append(tbody);
+        $('#board').html(table);
+    };
 
     Board.prototype.getCurrentPlayer = function () {
 
