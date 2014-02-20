@@ -78,10 +78,20 @@ Board = (function () {
         return _results;
     };
 
+
     Board.prototype.getCurrentPlayer = function () {
 
         return players[currentPlayer];
 
+    }
+
+
+    Board.prototype.gameStatus= function(){
+        var gameStatus ="<tr><td>Nombre</td><td>Posicion</td></tr>";
+        for (var i=0; i<numPlayers;i++){
+            gameStatus = gameStatus+"<tr><td>"+players[i].name+"</td><td>"+players[i].currentBox()+"</td></tr>";
+        }
+        $("#gameStatus")[0].innerHTML=gameStatus;
     }
 
 
