@@ -29,6 +29,10 @@ Player = (function () {
         return box = newBox;
     };
 
+    Player.prototype.goBack = function (cells) {
+        return box = box - cells;
+    };
+
     Player.prototype.currentBox = function () {
         return box;
     };
