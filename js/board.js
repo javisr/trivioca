@@ -47,7 +47,7 @@ Board = (function () {
 
     };
 
-    Board.prototype.nextTurn = function () {
+    Board.prototype.nextPlayer = function () {
 
         currentPlayer++;
 
@@ -55,11 +55,12 @@ Board = (function () {
             currentPlayer = 0;
         }
 
-        return players[currentPlayer].turn();
-
     };
 
-
+    Board.prototype.turn = function(){
+        
+      return players[currentPlayer].turn();  
+    };
     Board.prototype.printBoard = function () {
         return this.printNumbers();
     };
