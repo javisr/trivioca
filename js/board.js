@@ -35,9 +35,10 @@ Board = (function () {
     };
 
     Board.prototype.test = function(){
-        console.log('Current Player' + currentPlayer);
-        console.log(lastBox);
-        console.log(numPlayers);
+        console.log('Current Player ' + currentPlayer);
+        console.log('Last Box ' + lastBox);
+        console.log('Num Players ' + numPlayers);
+        console.log('Players');
         console.log(players);
     };
 
