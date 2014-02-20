@@ -1,18 +1,21 @@
 BoardApp = (function () {
 
     // VARIABLES PRIVADAS ACCESIBLES DESDE LOS PROTOTYPES
-    var currentPlayer, lastBox, players
-    var whoStart, loadUsers; //funciones privadas
+    var currentPlayer, lastBox, players,numPlayers;
 
-    function BoardApp(board_data) {
-        var data;
+    //funciones privadas
+    var whoStart, loadUsers;
 
-        data = board_data;
-        lastBox = data.length;
+    function BoardApp(data) {
+
+        lastBox = data.boxData.length;
+        numPlayers = data.numPlayer;
         players = [new Player('Player1', lastBox), new Player('Player2', lastBox)];
         currentPlayer = whoStart();
+
         this.printBoard();
 
+        this.test();
     }
 
 
@@ -27,6 +30,7 @@ BoardApp = (function () {
     BoardApp.prototype.test = function(){
         console.log(currentPlayer);
         console.log(lastBox);
+        console.log(numPlayers);
         console.log(players);
     };
 
