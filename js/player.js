@@ -1,69 +1,53 @@
 Player = (function () {
 
-    //VARIABLES PRIVADAS DE LA CLASE ACCESIBLES SÓLO DESDE MÉTODOS
-    var dice; //dado
-    var waitingTurns; //Turnos que tiene de penalización el player
-    var lastBox; //última casilla del tablero
-    var currentBox; //casilla actual
-    //////////////////////////////////////////////////////////////
+    // VARIABLES PRIVADAS ACCESIBLES DESDE LOS PROTOTYPES
+    var box, dice, waitingTurns, lastBox;
 
-
-    /*
-    *  Este es el constructor de la clase Player.
-    *  - name: nombre del jugador.
-    *  - totalBox: número total de casillas del tablero.
-     */
     function Player(name, totalBox) {
-        this.name = name; //nombre del player
-        lastBox = totalBox;  //--> ejemplo de variable privada de la clase.
+        //VARIABLE NO ACCESIBLE DESDE LOS PROTOTYPES
+        var piticli = 'ooooo';
+
+        box = 0;
+        waitingTurns = 0;
+        lastBox = totalBox;
+        dice = new Dice();
+
+        //VARIABLE ACCESIBLE DESDE EL OBJETO
+        this.name = name;
+
     }
 
-    currentBox = 0;
+    Player.prototype.test = function () {
+        console.log(box);
+        console.log(waitingTurns);
+        console.log(lastBox);
+        console.log(dice);
+        return true;
 
-    waitingTurns = 0;
-
-    dice = new Dice();
-
-    /*
-    * Mover el jugador a la casilla X
-    * - newBow: nueva casilla
-     */
+    };
     Player.prototype.jumpTo = function (newBox) {
-        //TODO cotrol that newBox is a int value;
-        return currentBox = newBox;
+        return box = newBox;
     };
 
-    /*
-     * currentBox getter
-     */
-    Player.prototype.getCurrentBox = function () {
-        return currentBox;
+    Player.prototype.currentBox = function () {
+        return box;
     };
 
-    /*
-    * waitingTurns setter
-     */
     Player.prototype.setWaitingTurns = function (turn) {
         return waitingTurns = turn;
     };
 
-    /*
-    * tiradas
-     */
-    Player.prototype.turn = function () {
-        console.log(lastBox);
-        var returned = {};
-        if (waitingTurns === 0) { //si no tiene turnos de espera
-            currentBox += dice["throw"]();
 
-            if (currentBox > lastBox) {
-                currentBox -= currentBox - lastBox;
+    Player.prototype.turn = function () {
+        var returned=  {};
+        if (waitingTurns === 0) {
+            box += dice["throw"]();
+            if (box > lastBox) {
+                box -= box - lastBox;
             }
-            //TODO poner una animación?
-            
             returned = {
-                'next': false, //False para que no salte ya al siguiente jugador
-                'box': currentBox //casilla nueva.
+                'next': false,
+                'box': box
             };
         } else {
             waitingTurns--;
