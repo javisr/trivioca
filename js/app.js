@@ -15,7 +15,7 @@ board = new Board(boardData);
         funclArgs = boxInfoPosition['fail_function_args'];
     }
     currentPlayer[func](funcArgs);
-    board.nextTurn();
+    board.turn();
     return $(this).closest("#questionWrapper").html('');
   });
 
