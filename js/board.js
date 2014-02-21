@@ -1,14 +1,14 @@
 Board = (function () {
 
     // VARIABLES PRIVADAS ACCESIBLES DESDE LOS PROTOTYPES
-    var currentPlayer, lastBox, players,numPlayers;
+    var currentPlayer, numBox, players,numPlayers;
 
     //funciones privadas
     var whoStart, loadUsers;
 
     function Board(data) {
 
-        lastBox = data.boxData.length;
+        numBox = data.boxData.length;
         numPlayers = data.numPlayer;
         players = loadUsers();
         currentPlayer = whoStart();
@@ -28,7 +28,7 @@ Board = (function () {
 
         for(var i = 1; i<=numPlayers; i++){
             var _name = 'Player' + i;
-            _players.push(new Player(_name, lastBox));
+            _players.push(new Player(_name, numBox));
         }
 
         return _players;
@@ -36,7 +36,7 @@ Board = (function () {
 
     Board.prototype.test = function(){
         console.log('Current Player ' + currentPlayer);
-        console.log('Last Box ' + lastBox);
+        console.log('Last Box ' + numBox);
         console.log('Num Players ' + numPlayers);
         console.log('Players');
         console.log(players);
