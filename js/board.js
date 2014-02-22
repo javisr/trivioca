@@ -63,7 +63,7 @@ Board = (function () {
     };
 
     Board.prototype.printBoard = function () {
-        var board_size, _i, _j, count;
+        var board_size, _j, count;
         // HTML vars:
         var table, tbody, tr, td, boxDiv;
 
@@ -72,7 +72,8 @@ Board = (function () {
 
         tbody = $(document.createElement('tbody'));
         count = 0;
-        for (_i = 0; _i < board_size || count < numBox; _i++) {
+        while (count < numBox) {
+            // Create new tr:
             tr = $(document.createElement('tr'));
             for (_j = 0; _j < board_size && count < numBox; _j++) {
                 // Create td:
