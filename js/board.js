@@ -63,21 +63,19 @@ Board = (function () {
     };
 
     Board.prototype.printBoard = function () {
-        var boxes, num_columns, num_rows, _i, _j, count;
+        var num_columns, num_rows, _i, _j, count;
         // HTML vars:
         var table, tbody, tr, td, boxDiv;
 
-        // Get number of boxes:
-        boxes = boardData.boxData.length;
         // Get table size : num_columns, num_rows:
-        num_columns = Math.floor(Math.sqrt(boxes));
-        num_rows = (num_columns < Math.sqrt(boxes)) ? num_columns + 1 : num_columns;
+        num_columns = Math.floor(Math.sqrt(numBox));
+        num_rows = (num_columns < Math.sqrt(numBox)) ? num_columns + 1 : num_columns;
 
         tbody = $(document.createElement('tbody'));
         count = 0;
         for (_i = 0; _i < num_rows; _i++) {
             tr = $(document.createElement('tr'));
-            for (_j = 0; _j < num_columns && count < boxes; _j++) {
+            for (_j = 0; _j < num_columns && count < numBox; _j++) {
                 // Create td:
                 td = $(document.createElement('td'));
                 td.addClass('box_' + ++count);
