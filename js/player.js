@@ -1,72 +1,111 @@
-Player = (function () {
+var Player = (function () {
 
-    // VARIABLES PRIVADAS ACCESIBLES DESDE LOS PROTOTYPES
-    var box, dice, waitingTurns, lastBox;
+    var currentBox, waitingTurns, haveTurn;
 
-    function Player(name, totalBox) {
-        //VARIABLE NO ACCESIBLE DESDE LOS PROTOTYPES
-        var piticli = 'ooooo';
-
-        box = 0;
+    function Player(name) {
+        haveTurn = false;
+        currentBox = 0;
         waitingTurns = 0;
-        lastBox = totalBox;
-        dice = new Dice();
 
-        //VARIABLE ACCESIBLE DESDE EL OBJETO
         this.name = name;
 
     }
 
     Player.prototype.test = function () {
-        console.log(box);
-        console.log(waitingTurns);
-        console.log(lastBox);
-        console.log(dice);
-        return true;
-
+        console.log('currentBox: ' + currentBox);
+        console.log('waitingTurns: ' + waitingTurns);
+        console.log('haveTurn: '+ haveTurn);
     };
     Player.prototype.jumpTo = function (newBox) {
-        return box = newBox;
+        currentBox = newBox;
+        return currentBox;
     };
 
-    Player.prototype.goBack = function (cells) {
-        return box = box - cells;
+    Player.prototype.decreaseIn = function (cells) {
+        currentBox = currentBox - cells;
+        return currentBox;
     };
 
-    Player.prototype.currentBox = function () {
-        return box;
-    };
+    Player.prototype.increaseIn = function (cells){
+        currentBox = currentBox + cells;
+        return currentBox;
 
-    Player.prototype.setWaitingTurns = function (turn) {
-        board.nextPlayer();
-        return waitingTurns = turn;
-    };
-
-
-    Player.prototype.turn = function () {
-        var returned=  {};
-        if (waitingTurns === 0) {
-            box += dice["throw"]();
-            if (box > lastBox) {
-                box -= box - lastBox;
-            }
-            returned = {
-                'next': false,
-                'box': box
-            };
-        } else {
-            waitingTurns--;
-            returned = {
-                'next': true
-            };
-        }
-        return returned;
-    };
-
-    Player.prototype.repeatTurn = function () {
-      this.turn();
     }
 
-    return Player;
+    Player.prototype.getCurrentBox = function () {
+        return currentBox;
+    };
 
+    Player.prototype.setWaitingTurns = function (turns) {
+        return waitingTurns = turns;
+    };
+
+
+    Player.prototype.repeatTurn = function () {
+        haveTurn = true;
+    }
+
+
+    Player.prototype.throwDice = function (dice){
+        //TODO check the type of dice
+        var diceResult;
+
+        //throw dice
+        diceResult = dice.throw();
+
+        //increase currentBox
+        this.increaseIn(diceResult);
+
+
+        toReturn = {
+            'diceResult' : diceResult,
+            'currentBox' : currentBox
+        }
+
+        return toReturn;
+    }
+
+    Player.prototype.canPlay = function(){
+        var canPlay = (waitingTurns === 0 ) ? true: false;
+        return canPlay;
+    };
+
+    Player.prototype.setTurn = function(){
+        haveTurn = true;
+    };
+
+   Player.prototype.doStillHaveTurn = function(){
+       return haveTurn;
+   };
+
+
+    //Return the object Player :)
+    return Player;
 })();
+
+
+
+
+
+/*
+ Player.prototype.turn = function () {
+ var returned=  {};
+ if (waitingTurns === 0) {
+ haveTurn = true;
+ currentBox += dice["throw"]();
+ if (currentBox > totalBoxex) {
+ currentBox -= currentBox - totalBoxex;
+ }
+ returned = {
+ 'next': false,
+ 'currentBox': currentBox
+ };
+ } else {
+ waitingTurns--;
+ returned = {
+ 'next': true
+ };
+ }
+ return returned;
+ };
+ */

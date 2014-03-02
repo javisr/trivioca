@@ -1,4 +1,4 @@
-Dice = (function() {
+var Dice = (function() {
     function Dice() {}
 
     Dice.prototype["throw"] = function() {
