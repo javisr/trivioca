@@ -1,54 +1,115 @@
-board = new Board(boardData);
+var App = (function () {
 
-  $('#questionWrapper').on('click', '.answer', function(event) {
-    event.preventDefault();
-    alert($(this).data('valid'));
-    var currentPlayer = board.getCurrentPlayer();
-    var boxInfoPosition = boardData.boxData[currentPlayer.currentBox()];
-    var func;
-    var funcArgs;
-    if ($(this).data('valid') == 'true'){
-        func = boxInfoPosition['success_function'];
-        funcArgs = boxInfoPosition['success_function_args'];
-    }else{
-        func = boxInfoPosition['fail_function'];
-        funclArgs = boxInfoPosition['fail_function_args'];
-    }
-    currentPlayer[func](funcArgs);
-    board.turn();
-    return $(this).closest("#questionWrapper").html('');
-  });
+    var players, dice, board, finished, started, currentPlayer;
 
-  window.loadQuestion = function(category) {
-    var categoryQuestions;
-    if (category == null) {
-      category = 'sport';
-    }
-    categoryQuestions = questionDB[category];
-    if (categoryQuestions == null) {
-      return null;
-    }
-    return categoryQuestions[Math.floor(Math.random() * categoryQuestions.length)];
-  };
+    var _whoStart;
 
-  window.printQuestion = function(questionData) {
-    var answerData, answerHTML, answerList, element, questionHTML, _i, _len, _ref;
-    questionHTML = $("#question").clone();
-    questionHTML.find(".questionText").html(questionData.questionText);
-    answerHTML = questionHTML.find(".answer").remove();
-    answerList = questionHTML.find(".answerList");
-    _ref = $.shuffle(questionData.answers);
-    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      answerData = _ref[_i];
-      element = answerHTML.clone().html(answerData.text);
-      element.attr("data-valid", answerData.valid);
-      answerList.append(element);
-    }
-    delete answersHTML;
-    questionHTML.css('display', '');
-    return $("#questionWrapper").html(questionHTML.html());
-  };
 
-  window.showQuestion = function() {
-    return printQuestion(loadQuestion());
-  };
+    function App() {
+        board = new Board();
+        dice = new Dice();
+        players = [];
+        finished = false;
+        started = false;
+    }
+
+
+    App.prototype.newPlayer = function (name) {
+        if (started === false && name) {
+            var player = new Player(name);
+            player.setNumber(players.length);
+            players.push(player);
+            return true;
+        } else {
+            console.log('No se pudo meter el jugardor');
+            return false;
+        }
+    };
+
+    _whoStart = function () {
+        var numPlayers = players.length;
+        if (numPlayers >= 2) {
+            return players[Math.floor((Math.random() * numPlayers))];
+        } else {
+            console.log('tiene que haber un mínimo de 2 jugadores');
+            return false;
+        }
+
+    };
+
+    App.prototype.startGame = function () {
+        currentPlayer = _whoStart();
+        if (currentPlayer != false) {
+            started = true;
+            return true;
+        } else {
+            return false
+        }
+    };
+
+    App.prototype.currentPlayer = function () {
+        if (started !== false)
+            return currentPlayer;
+        else
+            return false;
+    };
+
+    App.prototype.play = function () {
+        if (started) {
+         do
+            {
+                if (currentPlayer.canPlay()) {
+
+                    currentPlayer.setTurn();
+
+                    var result = currentPlayer.throwDice(dice);
+
+                    //TODO MOVE PLAYER IN BOARD
+
+                    var box = board.getBoxData(result.currentBox);
+
+                    var question = new Question(board.getQuestion());
+
+                    while (question.wasResponsed() === false) {
+                        console.log('there is not answer yet');
+                    }
+
+                    var response = question.getResponse();
+
+                    delete question;
+
+                    currentPlayer.update(box, response);
+
+                    if (!currentPlayer.doStillHaveTurn()) {
+                        this.nextPlayer();
+                    }
+
+                } else {
+                    this.nextPlayer();
+                }
+
+            } while (!finished)
+        }
+    }
+    App.prototype.nextPlayer = function () {
+        var current = currentPlayer.getNumber();
+        if(current == players.length){
+            currentPlayer = players[0];
+        }else{
+            current++;
+            currentPlayer = players[current];
+        }
+    }
+    return App;
+
+})();
+
+var game = new App();
+
+//TO REMOVE
+
+game.newPlayer('JugadorA');
+game.newPlayer('JugadorB');
+game.startGame();
+/*game.play();
+*/
