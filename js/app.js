@@ -70,15 +70,25 @@ var App = (function () {
 
                     var question = new Question(board.getQuestion());
 
-                    while (question.wasResponsed() === false) {
+                    question.printQuestion();
+
+                  /*  while (question.wasResponsed() == false) {
                         console.log('there is not answer yet');
-                    }
+                    }*/
+                    var i = 0;
+                    var timer = setInterval(function(){
+                        if(i == 3000 || question.wasResponsed() == true) {
+                            clearInterval(timer);
+                        }
+                        i++;
+                    }, 100);
+
 
                     var response = question.getResponse();
 
                     delete question;
 
-                    currentPlayer.update(box, response);
+                   // currentPlayer.update(box, response);
 
                     if (!currentPlayer.doStillHaveTurn()) {
                         this.nextPlayer();
@@ -88,6 +98,8 @@ var App = (function () {
                     this.nextPlayer();
                 }
 
+
+                finished = true;
             } while (!finished)
         }
     }
@@ -111,5 +123,4 @@ var game = new App();
 game.newPlayer('JugadorA');
 game.newPlayer('JugadorB');
 game.startGame();
-/*game.play();
-*/
+game.play();

@@ -33,7 +33,7 @@ Board = (function () {
     }
 
     Board.prototype.getBoxData = function (box) {
-        if (box >= 0 && box < boxesData) {
+        if (box >= 0 && box < numBoxes-1) {
             return boxesData[box];
         } else {
             console.log('Box no puede ser menor que 0 ni mayor que el total del boxes-1');

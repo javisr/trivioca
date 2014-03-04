@@ -1,8 +1,22 @@
 var Question = (function () {
 
-    var _bindAnswer,_printQuestion, _responsed, _response;
+    var bindAnswer, responsed, response,questionData;
 
-    _printQuestion = function (questionData) {
+    function Question(_questionData) {
+        responsed = false;
+        questionData = _questionData;
+
+    }
+
+    Question.prototype.wasResponsed = function(){
+        return responsed;
+    }
+    Question.prototype.getResponse = function(){
+        return response;
+    }
+
+    Question.prototype.printQuestion = function () {
+
         var answerData, answerHTML, answerList, element, questionHTML, _i, _len, _ref;
         questionHTML = $("#question").clone();
         questionHTML.find(".questionText").html(questionData.questionText);
@@ -17,32 +31,20 @@ var Question = (function () {
         }
         delete answersHTML;
         questionHTML.css('display', '');
-        return $("#questionWrapper").html(questionHTML.html());
+        $("#questionWrapper").html(questionHTML.html());
+
+        bindAnswer();
     };
 
-    _bindAnswer =  function () {
-        $('#questionWrapper').unbind('click').bind('click', '.answer', function (event) {
+    bindAnswer =  function () {
+        $('#questionWrapper .answer').unbind('click').bind('click', function (event) {
             event.preventDefault();
-            _response = $(this).data('valid');
+            response = $(this).data('valid');
+            responsed = true;
             $(this).closest("#questionWrapper").html('');
         });
 
     };
-
-
-    function Question(questionData) {
-        _responsed = false;
-        _printQuestion(questionData);
-        _bindAnswer();
-
-    }
-
-    Question.prototype.wasResponsed = function(){
-        return _responsed;
-    }
-    Question.prototype.getResponse = function(){
-        return _response;
-    }
 
     return Question;
 
