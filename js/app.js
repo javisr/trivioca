@@ -13,6 +13,9 @@ var App = (function () {
         started = false;
     }
 
+    App.prototype.test = function(){
+      console.log(players);
+    };
 
     App.prototype.newPlayer = function (name) {
         if (started === false && name) {
@@ -54,10 +57,18 @@ var App = (function () {
             return false;
     };
 
+    App.prototype.nextPlayer = function () {
+        var current = currentPlayer.getNumber();
+        if(current == players.length){
+            currentPlayer = players[0];
+        }else{
+            current++;
+            currentPlayer = players[current-1];
+        }
+    };
     App.prototype.play = function () {
-        if (started) {
-         do
-            {
+        if (started && !finished && typeof timer == 'undefined') {
+
                 if (currentPlayer.canPlay()) {
 
                     currentPlayer.setTurn();
@@ -72,46 +83,37 @@ var App = (function () {
 
                     question.printQuestion();
 
-                  /*  while (question.wasResponsed() == false) {
-                        console.log('there is not answer yet');
-                    }*/
                     var i = 0;
+                    var self = this;
                     var timer = setInterval(function(){
                         if(i == 3000 || question.wasResponsed() == true) {
                             clearInterval(timer);
+
+                            var response = question.getResponse();
+
+                            delete question;
+
+                            currentPlayer.update(box, response);
+
+                            if (!currentPlayer.doStillHaveTurn()) {
+                                self.nextPlayer();
+                            }
+
+                            self.play();
                         }
                         i++;
                     }, 100);
 
 
-                    var response = question.getResponse();
-
-                    delete question;
-
-                   // currentPlayer.update(box, response);
-
-                    if (!currentPlayer.doStillHaveTurn()) {
-                        this.nextPlayer();
-                    }
 
                 } else {
                     this.nextPlayer();
+                    this.play();
                 }
 
+        }
+    }
 
-                finished = true;
-            } while (!finished)
-        }
-    }
-    App.prototype.nextPlayer = function () {
-        var current = currentPlayer.getNumber();
-        if(current == players.length){
-            currentPlayer = players[0];
-        }else{
-            current++;
-            currentPlayer = players[current];
-        }
-    }
     return App;
 
 })();

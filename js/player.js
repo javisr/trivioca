@@ -92,7 +92,7 @@ var Player = (function () {
 
         var boxInfo = _boxInfo;
         //TODO proteger el caso en que func y funcArgs sean undefined
-        if (answer) {
+        if (_response) {
             func = boxInfo['success_function'];
             funcArgs = boxInfo['success_function_args'];
         } else {
