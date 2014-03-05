@@ -14,14 +14,16 @@ var App = (function () {
     }
 
     App.prototype.test = function(){
-      console.log(players);
-    };
+        console.log('======================= ESTADO DEL JUEGO =======================');
+        console.log('PLAYERS----------------');
+        for(var i = 0; i < players.length; i++){
+            players[i].test();
+        }
+    }
 
     App.prototype.newPlayer = function (name) {
         if (started === false && name) {
-            var player = new Player(name);
-            player.setNumber(players.length);
-            players.push(player);
+            players.push(new Player(name,players.length));
             return true;
         } else {
             console.log('No se pudo meter el jugardor');
@@ -123,6 +125,7 @@ var game = new App();
 //TO REMOVE
 
 game.newPlayer('JugadorA');
-game.newPlayer('JugadorB');
-game.startGame();
-game.play();
+//game.newPlayer('JugadorB');
+//game.newPlayer('JugadorC');
+//game.startGame();
+//game.play();

@@ -2,10 +2,11 @@ var Player = (function () {
 
     var currentBox, waitingTurns, haveTurn, number;
 
-    function Player(name) {
+    function Player(name, n) {
         haveTurn = false;
         currentBox = 0;
         waitingTurns = 0;
+        number = n;
 
         this.name = name;
 
@@ -13,9 +14,13 @@ var Player = (function () {
 
 
     Player.prototype.test = function () {
+        console.log('=========================================');
+        console.log('name: ' + this.name);
+        console.log('number: ' + number);
         console.log('currentBox: ' + currentBox);
         console.log('waitingTurns: ' + waitingTurns);
         console.log('haveTurn: ' + haveTurn);
+        console.log('=========================================');
     };
     Player.prototype.getNumber = function () {
         return number;
