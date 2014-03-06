@@ -2,35 +2,43 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/fonts.css">
         <script src="js/vendor/jquery-1.10.2.min.js"></script>
         <script src="js/vendor/jquery.shuffle.js"></script>
     </head>
     <body>
 
+      <div class="principal-wrapper">
+        <h1>Triviocados</h1>
 
-        <p>Triviocados</p>
+        <div class="content-wrapper">
+          <div id="questionWrapper" class="questionWrapper">
+          </div>
 
-        <div id="questionWrapper" class="questionWrapper">
+          <div id="board">
+          </div>
 
-        </div>
-
-        <div id="board">
-        </div>
-
-        <div>
-            <h2>Estado del Juego</h2>
-            <table id="gameStatus"></table>
-        </div>
-        <div id="question" class="question" style="display:none;">
+          <div id="question" class="question" style="display:none;">
             <div class="questionText">
             </div>
             <div class="answerContainer">
-                <ul class="answerList">
-                    <li class="answer">
-                    </li>
-                </ul>
+              <ul class="answerList">
+                <li class="answer">
+                </li>
+              </ul>
             </div>
+          </div>
         </div>
+
+        <aside>
+          <div id="status-wrapper">
+              <h2>Estado del Juego</h2>
+              <table id="gameStatus"></table>
+          </div>
+        </aside>
+      </div>  
+        <img class="body-corner" src="css/images/pato.png" title="Triviocados" alt="Triviocados"/>
+
         <script src="js/questionsDB.js"></script>
         <script src="js/boardData.js"></script>
         <script src="js/dice.js"></script>
