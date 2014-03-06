@@ -121,11 +121,3 @@ var App = (function () {
 })();
 
 var game = new App();
-
-//TO REMOVE
-
-game.newPlayer('JugadorA');
-//game.newPlayer('JugadorB');
-//game.newPlayer('JugadorC');
-//game.startGame();
-//game.play();
