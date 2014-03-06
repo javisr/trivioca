@@ -1,0 +1,85 @@
+/* General */
+html, body {
+  margin:0px;
+  height:100%;
+}
+body {
+  font-family: "open_sans";
+  font-size: 14px;
+  background: #2ecc71;
+  color: #303030;
+}
+
+h1 {
+  font-family: airplane;
+  font-size: 5em;
+  font-weight: 300;
+  text-transform: lowercase;
+  color: #2ecc71;
+  text-shadow: 2px 2px 0px #27ae60;
+}
+
+h1:first-letter {
+  font-size: 1.25em;
+  color: #f17288;
+  text-shadow: 2px 2px 0px #EC3778;
+}
+
+h2 {
+  font-family: airplane;
+  text-transform: lowercase;
+  font-weight: 300;
+  font-size: 2.5em;
+  color: #f17288;
+}
+h2:first-letter {
+  font-size: 1.35em;
+  color: #2ecc71;
+}
+
+td {
+  width: 100px;
+  height: 80px;
+}
+
+/* Principal structure */
+.body-corner {
+  position: absolute;
+  bottom: 0;
+  z-index: 8;
+  height: 53%;
+}
+
+.principal-wrapper {
+  max-width: 1024px;
+  margin: 0 auto;
+  background: #fff;
+  height:100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50px/160px;
+  box-shadow: 5px 5px 3px #27ae60;
+}
+
+.principal-wrapper h1 {
+  text-align: right;
+  margin-right: 50px;
+}
+
+.content-wrapper {
+  float: left;
+  padding: 0 2%;
+  width: 66%;
+}
+
+aside {
+  padding: 0 2%;
+  width: 25%;
+  overflow: hidden;
+  border-left: 2px dashed #f39c12;
+}
+
+#table-board {
+  margin: 0 auto;
+  font-family: open_sans_condensedbold;
+}
