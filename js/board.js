@@ -1,117 +1,96 @@
 Board = (function () {
+    var numBoxes, boxesData, questions;
 
-    // VARIABLES PRIVADAS ACCESIBLES DESDE LOS PROTOTYPES
-    var currentPlayer, lastBox, players,numPlayers;
-
-    //funciones privadas
-    var whoStart, loadUsers;
-
-    function Board(data) {
-
-        lastBox = data.boxData.length;
-        numPlayers = data.numPlayer;
-        players = loadUsers();
-        currentPlayer = whoStart();
-
+    function Board() {
+        boxesData = boardData.boxData;
+        numBoxes = boxesData.length;
+        questions = questionDB;
         this.printBoard();
-
-        this.test();
     }
 
 
-    whoStart = function () {
-        return Math.floor((Math.random()*numPlayers)+1);
-    };
+    Board.prototype.getQuestion = function (category) {
+        var question, categoryQuestions;
 
-    loadUsers = function(){
-        var _players = [];
 
-        for(var i = 1; i<=numPlayers; i++){
-            var _name = 'Player' + i;
-            _players.push(new Player(_name, lastBox));
+        //TODO get ramdon category
+
+        if (category == null) {
+            category = 'sport';
         }
 
-        return _players;
-    };
+        ///////////
 
-    Board.prototype.test = function(){
-        console.log('Current Player ' + currentPlayer);
-        console.log('Last Box ' + lastBox);
-        console.log('Num Players ' + numPlayers);
-        console.log('Players');
-        console.log(players);
-    };
-
-    Board.prototype.start = function () {
-        players[currentPlayer].turn();
-        return currentPlayer++;
-
-    };
-
-    Board.prototype.nextPlayer = function () {
-
-        currentPlayer++;
-
-        if (currentPlayer === players.length) {
-            currentPlayer = 0;
+        categoryQuestions = questions[category];
+        if (categoryQuestions == null) {
+            return null;
         }
 
-    };
+        question = categoryQuestions[Math.floor(Math.random() * categoryQuestions.length)];
 
-    Board.prototype.turn = function(){
 
-      return players[currentPlayer].turn();
+        return question;
+    }
+
+    Board.prototype.getBoxData = function (box) {
+        if (box >= 0 && box < numBoxes-1) {
+            return boxesData[box];
+        } else {
+            console.log('Box no puede ser menor que 0 ni mayor que el total del boxes-1');
+            return false;
+        }
     };
 
     Board.prototype.printBoard = function () {
-      var boxes, num_column, num_rows, table, tbody, td, tr;
-      boxes = boardData.boxData.length;
-      num_column = Math.floor(Math.sqrt(boxes));
-      if (num_column < Math.sqrt(boxes)){
-        num_rows = num_column + 1;
-      }
-        else {
-          num_rows = num_column;
-        }
-      
-      table = document.createElement('table');
+        var board_size, _j, count;
+        // HTML vars:
+        var table, tbody, tr, td, boxDiv;
 
-      
-      console.log("column"+column + "rows"+rows);
-        return this.printNumbers();
+        // Get board size:
+        board_size = Math.floor(Math.sqrt(numBoxes));
+
+        tbody = $(document.createElement('tbody'));
+        count = 0;
+        while (count < numBoxes) {
+            // Create new tr:
+            tr = $(document.createElement('tr'));
+            for (_j = 0; _j < board_size && count < numBoxes; _j++) {
+                // Create td:
+                td = $(document.createElement('td'));
+                td.addClass('box_' + ++count);
+                boxDiv = "<div class=\"box\"> " + count + " </div>";
+                td.append(boxDiv);
+                // Add new td to tr:
+                tr.append(td);
+            }
+            // Add new tr to tbody:
+            tbody.append(tr);
+        }
+
+        // Generate table:
+        table = $(document.createElement('table'));
+        table.attr('id', 'table-board');
+        table.append(tbody);
+        $('#board').html(table);
     };
-
-    Board.prototype.printNumbers = function () {
-        var box, boxDiv, boxes, id, _i, _len, _results;
-        boxes = $("#board td");
-        _results = [];
-        for (_i = 0, _len = boxes.length; _i < _len; _i++) {
-            box = boxes[_i];
-            id = box.id;
-            id = parseInt(id.replace('box_', ''));
-            boxDiv = "<div class=\"box\"> " + (id + 1) + " </div>";
-            _results.push($(box).html(boxDiv));
-        }
-        return _results;
-    };
-
-
-    Board.prototype.getCurrentPlayer = function () {
-
-        return players[currentPlayer];
-
-    }
-
-
-    Board.prototype.gameStatus= function(){
-        var gameStatus ="<tr><td>Nombre</td><td>Posicion</td></tr>";
-        for (var i=0; i<numPlayers;i++){
-            gameStatus = gameStatus+"<tr><td>"+players[i].name+"</td><td>"+players[i].currentBox()+"</td></tr>";
-        }
-        $("#gameStatus")[0].innerHTML=gameStatus;
-    }
 
 
     return Board;
 
 })();
+
+
+/*
+ Board.prototype.gameStatus = function () {
+ var gameStatus = "<tr><td>Nombre</td><td>Posicion</td></tr>";
+ for (var i = 0; i < numPlayers; i++) {
+ gameStatus = gameStatus + "<tr><td>" + players[i].name + "</td><td>" + players[i].currentBox() + "</td></tr>";
+ }
+ $("#gameStatus")[0].innerHTML = gameStatus;
+ }
+
+
+ return Board;
+
+ })();
+ */

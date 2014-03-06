@@ -1,72 +1,114 @@
-Player = (function () {
+var Player = (function () {
 
-    // VARIABLES PRIVADAS ACCESIBLES DESDE LOS PROTOTYPES
-    var box, dice, waitingTurns, lastBox;
+    var currentBox, waitingTurns, haveTurn, number;
 
-    function Player(name, totalBox) {
-        //VARIABLE NO ACCESIBLE DESDE LOS PROTOTYPES
-        var piticli = 'ooooo';
-
-        box = 0;
+    function Player(name, n) {
+        haveTurn = false;
+        currentBox = 0;
         waitingTurns = 0;
-        lastBox = totalBox;
-        dice = new Dice();
+        number = n;
 
-        //VARIABLE ACCESIBLE DESDE EL OBJETO
         this.name = name;
 
     }
 
+
     Player.prototype.test = function () {
-        console.log(box);
-        console.log(waitingTurns);
-        console.log(lastBox);
-        console.log(dice);
-        return true;
-
+        console.log('=========================================');
+        console.log('name: ' + this.name);
+        console.log('number: ' + number);
+        console.log('currentBox: ' + currentBox);
+        console.log('waitingTurns: ' + waitingTurns);
+        console.log('haveTurn: ' + haveTurn);
+        console.log('=========================================');
     };
+    Player.prototype.getNumber = function () {
+        return number;
+    }
+
+    Player.prototype.setNumber = function (_number) {
+        number = _number;
+    }
+
     Player.prototype.jumpTo = function (newBox) {
-        return box = newBox;
+        currentBox = newBox;
+        haveTurn = false;
+        return currentBox;
     };
 
-    Player.prototype.goBack = function (cells) {
-        return box = box - cells;
+    Player.prototype.decreaseIn = function (cells) {
+        currentBox = currentBox - cells;
+        haveTurn = false;
+        return currentBox;
     };
 
-    Player.prototype.currentBox = function () {
-        return box;
+    Player.prototype.increaseIn = function (cells) {
+        currentBox = currentBox + cells;
+        haveTurn = false;
+        return currentBox;
+
+    }
+
+    Player.prototype.getCurrentBox = function () {
+        return currentBox;
     };
 
-    Player.prototype.setWaitingTurns = function (turn) {
-        board.nextPlayer();
-        return waitingTurns = turn;
-    };
-
-
-    Player.prototype.turn = function () {
-        var returned=  {};
-        if (waitingTurns === 0) {
-            box += dice["throw"]();
-            if (box > lastBox) {
-                box -= box - lastBox;
-            }
-            returned = {
-                'next': false,
-                'box': box
-            };
-        } else {
-            waitingTurns--;
-            returned = {
-                'next': true
-            };
-        }
-        return returned;
+    Player.prototype.setWaitingTurns = function (turns) {
+        return waitingTurns = turns;
     };
 
     Player.prototype.repeatTurn = function () {
-      this.turn();
+        haveTurn = true;
     }
 
-    return Player;
+    Player.prototype.throwDice = function (dice) {
+        //TODO check the type of dice
+        var diceResult;
 
+        //throw dice
+        diceResult = dice.throw();
+
+        //increase currentBox
+        this.increaseIn(diceResult);
+
+
+        toReturn = {
+            'diceResult': diceResult,
+            'currentBox': currentBox
+        }
+
+        return toReturn;
+    }
+
+    Player.prototype.canPlay = function () {
+        var canPlay = (waitingTurns === 0 ) ? true : false;
+        return canPlay;
+    };
+
+    Player.prototype.setTurn = function () {
+        haveTurn = true;
+    };
+
+    Player.prototype.doStillHaveTurn = function () {
+        return haveTurn;
+    };
+
+    Player.prototype.update = function(_boxInfo, _response){
+
+        var boxInfo = _boxInfo;
+        //TODO proteger el caso en que func y funcArgs sean undefined
+        if (_response) {
+            func = boxInfo['success_function'];
+            funcArgs = boxInfo['success_function_args'];
+        } else {
+            func = boxInfo['fail_function'];
+            funcArgs = boxInfo['fail_function_args'];
+        }
+
+        this[func](funcArgs);//currentPlayer[func](funcArgs);
+    }
+
+
+    //Return the object Player :)
+    return Player;
 })();
