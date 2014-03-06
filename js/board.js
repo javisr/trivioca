@@ -61,7 +61,6 @@ Board = (function () {
                 boxDiv = "<div class=\"box\"> " + count + " </div>";
                 td.append(boxDiv);
                 // Add new td to tr:
-
                 tr.append(td);
             }
             // Add new tr to tbody:
@@ -73,7 +72,6 @@ Board = (function () {
         table.attr('id', 'table-board');
         table.append(tbody);
         $('#board').html(table);
-
        
         //Metodo para board en player y funcion en player para pintarlo encima
 
@@ -89,7 +87,6 @@ Board = (function () {
     };
 
     return Board;
-
 
 })();
 
