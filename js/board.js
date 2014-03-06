@@ -35,9 +35,10 @@ Board = (function () {
     };
 
     Board.prototype.test = function(){
-        console.log('Current Player' + currentPlayer);
-        console.log(lastBox);
-        console.log(numPlayers);
+        console.log('Current Player ' + currentPlayer);
+        console.log('Last Box ' + lastBox);
+        console.log('Num Players ' + numPlayers);
+        console.log('Players');
         console.log(players);
     };
 
@@ -47,7 +48,7 @@ Board = (function () {
 
     };
 
-    Board.prototype.nextTurn = function () {
+    Board.prototype.nextPlayer = function () {
 
         currentPlayer++;
 
@@ -55,11 +56,12 @@ Board = (function () {
             currentPlayer = 0;
         }
 
-        return players[currentPlayer].turn();
-
     };
 
+    Board.prototype.turn = function(){
 
+      return players[currentPlayer].turn();
+    };
 
     Board.prototype.printBoard = function () {
       var boxes, num_column, num_rows, table, tbody, td, tr;
@@ -93,10 +95,20 @@ Board = (function () {
         return _results;
     };
 
+
     Board.prototype.getCurrentPlayer = function () {
 
         return players[currentPlayer];
 
+    }
+
+
+    Board.prototype.gameStatus= function(){
+        var gameStatus ="<tr><td>Nombre</td><td>Posicion</td></tr>";
+        for (var i=0; i<numPlayers;i++){
+            gameStatus = gameStatus+"<tr><td>"+players[i].name+"</td><td>"+players[i].currentBox()+"</td></tr>";
+        }
+        $("#gameStatus")[0].innerHTML=gameStatus;
     }
 
 

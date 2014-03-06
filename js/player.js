@@ -29,11 +29,16 @@ Player = (function () {
         return box = newBox;
     };
 
+    Player.prototype.goBack = function (cells) {
+        return box = box - cells;
+    };
+
     Player.prototype.currentBox = function () {
         return box;
     };
 
     Player.prototype.setWaitingTurns = function (turn) {
+        board.nextPlayer();
         return waitingTurns = turn;
     };
 
