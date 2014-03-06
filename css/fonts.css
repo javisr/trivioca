@@ -7,9 +7,7 @@
          url('../fonts/opensans-regular-webfont-webfont.svg#open_sansregular') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
-
 
 @font-face {
     font-family: 'open_sans_condensedbold';
@@ -20,5 +18,15 @@
          url('../fonts/opensans-condbold-webfont-webfont.svg#open_sans_condensedbold') format('svg');
     font-weight: normal;
     font-style: normal;
+}
 
+@font-face {
+    font-family: 'airplane';
+    src: url('../fonts/airplane-webfont.eot');
+    src: url('../fonts/airplane-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/airplane-webfont.woff') format('woff'),
+         url('../fonts/airplane-webfont.ttf') format('truetype'),
+         url('../fonts/airplane-webfont.svg#airplane') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
