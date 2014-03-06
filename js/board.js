@@ -61,6 +61,7 @@ Board = (function () {
                 boxDiv = "<div class=\"box\"> " + count + " </div>";
                 td.append(boxDiv);
                 // Add new td to tr:
+
                 tr.append(td);
             }
             // Add new tr to tbody:
@@ -72,10 +73,23 @@ Board = (function () {
         table.attr('id', 'table-board');
         table.append(tbody);
         $('#board').html(table);
+
+       
+        //Metodo para board en player y funcion en player para pintarlo encima
+
+         var pos_box = '8';
+         Board.prototype.getBoxPos = function (pos_box) {
+            var p = $(".box_" + pos_box);
+            var position = p.offset();
+            console.log(position);
+            console.log("left: " + position.left + ", top: " + position.top );
+         }
+            var capa_box = $("<div style='background: red;position: absolute; opacity: 0.3;top:0;left: 0;z-index: 9'>X</div>");
+            capa_box.appendTo($('.box_' + pos_box));
     };
 
-
     return Board;
+
 
 })();
 
