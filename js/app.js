@@ -77,6 +77,7 @@ var App = (function () {
 
             if (currentPlayer.canPlay()) {
 
+                
                 currentPlayer.setTurn();
                 var result = currentPlayer.throwDice(dice);
 
@@ -88,11 +89,7 @@ var App = (function () {
 
                 var self = this;
                 var turnCallback = function () {
-                    if(timer) {
-                        clearTimeout(timer);
-                    }
-                    
-                    var response = false;
+                       var response = false;
                     if (question.wasResponsed() == true) {
                         response = question.getResponse();
                     }
@@ -107,8 +104,6 @@ var App = (function () {
                     self.play();
                 };
                 question.printQuestion(turnCallback);
-                var timer = setTimeout(turnCallback, 5000);
-
 
             } else {
                 this.nextPlayer();

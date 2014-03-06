@@ -33,17 +33,38 @@ var Question = (function () {
         questionHTML.css('display', '');
         $("#questionWrapper").html(questionHTML.html());
 
+
         bindAnswer(handler);
+        timer(30, handler);
     };
 
-    bindAnswer =  function (handler) {
+
+    timer = function (seconds, handler) {
+        $("#timer").html(seconds);
+        if (seconds == 0) {
+            $("#timer").html('');
+            responsed = false;
+            response = false;
+            if ($.isFunction(handler)) {
+                handler();
+            }
+        }
+        else {
+            seconds--;
+            setTimeout(function(){
+                timer(seconds, handler);
+            }, 1000);
+        }
+    }
+
+    bindAnswer = function (handler) {
+
         $('#questionWrapper .answer').unbind('click').bind('click', function (event) {
             event.preventDefault();
             response = $(this).data('valid');
             responsed = true;
             $(this).closest("#questionWrapper").html('');
-
-            if($.isFunction(handler)) {
+            if ($.isFunction(handler)) {
                 handler();
             }
         });
