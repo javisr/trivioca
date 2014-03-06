@@ -111,6 +111,13 @@ var Player = (function () {
         }
 
         this[func](funcArgs);//currentPlayer[func](funcArgs);
+    };
+
+    Player.prototype.printInBox = function(coordinate){
+        /*
+        var capa_box = $("<div style='background: red;position: absolute; opacity: 0.3;top:0;left: 0;z-index: 9'>X</div>");
+        capa_box.appendTo($('.box_' + pos_box));
+        */
     }
 
 
