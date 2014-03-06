@@ -35,7 +35,7 @@ var Question = (function () {
 
 
         bindAnswer(handler);
-        timer(30, handler);
+        timer(3, handler);
     };
 
 

@@ -63,12 +63,11 @@ var App = (function () {
 
     App.prototype.nextPlayer = function () {
         var current = currentPlayer.getNumber();
-        if (current == players.length) {
+        if (current == (players.length - 1)) {
             currentPlayer = players[0];
         } else {
-
-            currentPlayer = players[current];
             current++;
+            currentPlayer = players[current];
         }
     };
     App.prototype.play = function () {
