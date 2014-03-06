@@ -13,17 +13,19 @@ var App = (function () {
         started = false;
     }
 
-    App.prototype.test = function(){
+    App.prototype.test = function () {
         console.log('======================= ESTADO DEL JUEGO =======================');
         console.log('PLAYERS----------------');
-        for(var i = 0; i < players.length; i++){
+        for (var i = 0; i < players.length; i++) {
             players[i].test();
         }
     }
 
     App.prototype.newPlayer = function (name) {
         if (started === false && name) {
-            players.push(new Player(name,players.length));
+            var player = new Player(name);
+            player.setNumber(players.length)
+            players.push(player);
             return true;
         } else {
             console.log('No se pudo meter el jugardor');
@@ -61,57 +63,57 @@ var App = (function () {
 
     App.prototype.nextPlayer = function () {
         var current = currentPlayer.getNumber();
-        if(current == players.length){
+        if (current == players.length) {
             currentPlayer = players[0];
-        }else{
+        } else {
+
+            currentPlayer = players[current];
             current++;
-            currentPlayer = players[current-1];
         }
     };
     App.prototype.play = function () {
-        if (started && !finished && typeof timer == 'undefined') {
 
-                if (currentPlayer.canPlay()) {
+        if (started && !finished) {
 
-                    currentPlayer.setTurn();
+            if (currentPlayer.canPlay()) {
 
-                    var result = currentPlayer.throwDice(dice);
+                currentPlayer.setTurn();
+                var result = currentPlayer.throwDice(dice);
 
-                    //TODO MOVE PLAYER IN BOARD
+                //TODO MOVE PLAYER IN BOARD
 
-                    var box = board.getBoxData(result.currentBox);
+                var box = board.getBoxData(result.currentBox);
 
-                    var question = new Question(board.getQuestion());
+                var question = new Question(board.getQuestion());
 
-                    question.printQuestion();
+                var self = this;
+                var turnCallback = function () {
+                    if(timer) {
+                        clearTimeout(timer);
+                    }
+                    
+                    var response = false;
+                    if (question.wasResponsed() == true) {
+                        response = question.getResponse();
+                    }
+                    currentPlayer.update(box, response);
 
-                    var i = 0;
-                    var self = this;
-                    var timer = setInterval(function(){
-                        if(i == 3000 || question.wasResponsed() == true) {
-                            clearInterval(timer);
-
-                            var response = question.getResponse();
-
-                            delete question;
-
-                            currentPlayer.update(box, response);
-
-                            if (!currentPlayer.doStillHaveTurn()) {
-                                self.nextPlayer();
-                            }
-
-                            self.play();
-                        }
-                        i++;
-                    }, 100);
+                    if (!currentPlayer.doStillHaveTurn()) {
+                        self.nextPlayer();
+                    }
 
 
+                    delete question;
+                    self.play();
+                };
+                question.printQuestion(turnCallback);
+                var timer = setTimeout(turnCallback, 5000);
 
-                } else {
-                    this.nextPlayer();
-                    this.play();
-                }
+
+            } else {
+                this.nextPlayer();
+                this.play();
+            }
 
         }
     }
@@ -125,7 +127,8 @@ var game = new App();
 //TO REMOVE
 
 game.newPlayer('JugadorA');
-//game.newPlayer('JugadorB');
-//game.newPlayer('JugadorC');
-//game.startGame();
-//game.play();
+game.newPlayer('JugadorB');
+game.newPlayer('JugadorC');
+
+game.startGame();
+game.play();

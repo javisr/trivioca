@@ -15,7 +15,7 @@ var Question = (function () {
         return response;
     }
 
-    Question.prototype.printQuestion = function () {
+    Question.prototype.printQuestion = function (handler) {
 
         var answerData, answerHTML, answerList, element, questionHTML, _i, _len, _ref;
         questionHTML = $("#question").clone();
@@ -33,15 +33,19 @@ var Question = (function () {
         questionHTML.css('display', '');
         $("#questionWrapper").html(questionHTML.html());
 
-        bindAnswer();
+        bindAnswer(handler);
     };
 
-    bindAnswer =  function () {
+    bindAnswer =  function (handler) {
         $('#questionWrapper .answer').unbind('click').bind('click', function (event) {
             event.preventDefault();
             response = $(this).data('valid');
             responsed = true;
             $(this).closest("#questionWrapper").html('');
+
+            if($.isFunction(handler)) {
+                handler();
+            }
         });
 
     };
