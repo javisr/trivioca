@@ -34,7 +34,21 @@ var Question = (function () {
         $("#questionWrapper").html(questionHTML.html());
 
         bindAnswer();
+        timer(5);
     };
+
+    timer = function (seconds) {
+        $("#timer").html(seconds);
+        if (seconds == 0) {
+            $("#timer").html('');
+            responsed = false;
+            response = false;
+        }
+        else {
+            seconds--;
+            setTimeout("timer(" + seconds + ")", 1000); // 30 segundos
+        }
+    }
 
     bindAnswer =  function () {
         $('#questionWrapper .answer').unbind('click').bind('click', function (event) {
