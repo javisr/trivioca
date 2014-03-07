@@ -44,11 +44,12 @@ Board = (function () {
     Board.prototype.printBoard = function () {
         var board_size, _j, count;
         // HTML vars:
-        var table, tbody, tr, td, boxDiv;
+        var table, thead, tbody, tr, td, boxDiv;
 
         // Get board size:
         board_size = Math.floor(Math.sqrt(numBoxes));
 
+        thead = $(document.createElement('thead'));
         tbody = $(document.createElement('tbody'));
         count = 0;
         while (count < numBoxes) {
@@ -71,6 +72,7 @@ Board = (function () {
         table = $(document.createElement('table'));
         table.attr('id', 'table-board');
         table.append(tbody);
+        table.prepend(thead);
         $('#board').html(table);
 
     };

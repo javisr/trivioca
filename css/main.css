@@ -39,7 +39,6 @@ h2:first-letter {
 
 td {
   width: 100px;
-  height: 80px;
   position: relative;
 }
 
@@ -77,10 +76,142 @@ aside {
   padding: 0 2%;
   width: 25%;
   overflow: hidden;
-  border-left: 2px dashed #f39c12;
+  border-left: 2px dashed #F89406;
 }
 
 #table-board {
   margin: 0 auto;
   font-family: open_sans_condensedbold;
 }
+
+/* Countdown */
+.timer {
+  position: absolute;
+  color: #FFFDDB;
+  font-size: 5em;
+  z-index: 9;
+  position: absolute;
+  padding: 60px 90px;
+  text-align: center;
+  width: 80px;
+  text-shadow: 2px 2px 0px #e67e22;
+}
+
+.bgtimer {
+  -webkit-mask-box-image: -webkit-radial-gradient(
+    center,ellipse cover, rgba(0,0,0,1) 68%, rgba(0,0,0,0) 69.5%);
+  background: #F89406;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  margin: 20px auto;
+  }
+  
+  .bgtimer-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
+    border-width: 100px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent;
+    border-top-color: #3498db;
+    -webkit-transform: rotate(-45deg);
+    -webkit-animation: inner 30s linear infinite;
+  }
+  
+  .bgtimer-mask {
+    position: absolute;
+    top: 1px;
+    left: 0px;
+    background: transparent;
+    border-width: 100px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent;
+    border-top-color: #F89406;
+    -webkit-transform: rotate(-45deg);
+    -webkit-animation: mask 30s linear infinite;
+  }
+  .bgtimer-mask:after, .bgtimer-mask-two {
+    display: block;
+    content: '';
+    opacity: 0;
+    position: absolute;
+    top: 1px;
+    left: 0px;
+    background: transparent;
+    border-width: 100px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent;
+    border-top-color: #3498db;
+    -webkit-transform: rotate(45deg);
+    -webkit-animation: mask-two 30s linear infinite;
+  }
+  
+  @-webkit-keyframes inner {
+    0% {
+      -webkit-transform: rotate(-45deg);
+    }
+    25% {border-left-color: transparent;}
+    26% {
+      border-left-color: #3498db;
+    }
+    50% {border-bottom-color: transparent;}
+    51% {
+      border-bottom-color: #3498db;
+    }
+    75% {border-right-color:transparent;}
+    76% {
+      border-right-color: #3498db;
+    }
+    100% {
+      -webkit-transform: rotate(315deg);
+      border-left-color: #3498db;
+      border-bottom-color: #3498db;
+      border-right-color: #3498db;
+    }
+  }
+  
+   @-webkit-keyframes mask {
+    0% {
+      -webkit-transform: rotate(-45deg);
+    }
+    75% {
+      -webkit-transform: rotate(-45deg);
+    }
+    100% {
+      -webkit-transform: rotate(45deg);
+    }
+  }
+  
+  @-webkit-keyframes mask-two {
+    0% {
+      opacity: 0;
+    }
+    25% {
+      opacity: 0;
+    }
+    26% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @-webkit-keyframes whee {
+    from {
+      -webkit-transform: rotate(0deg);
+      -webkit-filter: hue-rotate(0deg) contrast(95%);
+    }
+    to {
+      -webkit-transform: rotate(360deg);
+      -webkit-filter: hue-rotate(360deg) contrast(95%);
+    }
+  }
