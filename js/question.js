@@ -35,14 +35,14 @@ var Question = (function () {
 
 
         bindAnswer(handler);
-        timer(3, handler);
+        timer(30, handler);
     };
 
 
     timer = function (seconds, handler) {
-        $("#timer").html(seconds);
+        $(".timer").html(seconds);
         if (seconds == 0) {
-            $("#timer").html('');
+            $(".timer").html('');
             responsed = false;
             response = false;
             if ($.isFunction(handler)) {
