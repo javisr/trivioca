@@ -112,17 +112,40 @@ var App = (function () {
         }
     }
 
+    App.prototype.getPlayersNumber = function(){
+        return players.length;
+    };
+
     return App;
 
 })();
 
 var game = new App();
 
-//TO REMOVE
+$(document).ready(function() {
+    $("#add_player_btn").click(function() {
+          //Get the player name inserted
+          var player = $("#player").val();
+          game.newPlayer(player);
+          //Add player to the list
+          $("#players_list ol").append('<li>'+player+'</li>');         
+          //Clear input
+          $("#player").val("");
+    });
+    $('#player').keypress(function(e){
+        if(e.which == 13){//Enter key pressed
+            $('#add_player_btn').click();//Trigger same click event
+        }
+    });
+    $("#start_btn").click(function() {
+            if(game.getPlayersNumber()>=2){
+                game.startGame();
+                game.play();
+            }else{
+                //TODO 
+                alert('Minimo dos jugadores');
+            }
+    });
+});
 
-game.newPlayer('JugadorA');
-game.newPlayer('JugadorB');
-game.newPlayer('JugadorC');
 
-game.startGame();
-game.play();

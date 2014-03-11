@@ -16,7 +16,11 @@
         <div id="board">
         </div>
 
+
         <div id="questionWrapper" class="questionWrapper"></div>
+
+
+
         <div id="question" class="question" style="display:none;">
             <div class="questionText">
             </div>
@@ -27,21 +31,34 @@
                 </ul>
             </div>
         </div>
+
     </div>
 
     <aside>
-        <div id="status-wrapper">
+        <div>
             <h2>Estado del Juego</h2>
             <table id="gameStatus"></table>
         </div>
 
+
+        <input id="player" type="text">
+        <input id="add_player_btn" type="button" value="Añadir jugador">
+
+
+        <div id="players_list">
+            <ol>
+            </ol>
+        </div>
+
+        <button id="start_btn" type="button">Empezar juego!</button>
+
         <div id="countdown">
-          <div class="timer"></div>
-          <div class="bgtimer">
-            <div class="bgtimer-inner"></div>
-            <div class="bgtimer-mask"></div>
-            <div class="bgtimer-mask-two"></div>
-          </div>
+            <div class="timer"></div>
+            <div class="bgtimer">
+                <div class="bgtimer-inner"></div>
+                <div class="bgtimer-mask"></div>
+                <div class="bgtimer-mask-two"></div>
+            </div>
         </div>
 
     </aside>
@@ -56,7 +73,5 @@
 <script src="js/ui.js"></script>
 <script src="js/question.js"></script>
 <script src="js/app.js"></script>
-
-
 </body>
 </html>
