@@ -11,6 +11,8 @@ var App = (function () {
         players = [];
         finished = false;
         started = false;
+        this.ui = new UI(this);
+
     }
 
     App.prototype.test = function () {
@@ -20,7 +22,6 @@ var App = (function () {
             players[i].test();
         }
     }
-
     App.prototype.newPlayer = function (name) {
         if (started === false && name) {
             var player = new Player(name);
@@ -32,7 +33,6 @@ var App = (function () {
             return false;
         }
     };
-
     _whoStart = function () {
         var numPlayers = players.length;
         if (numPlayers >= 2) {
@@ -43,7 +43,6 @@ var App = (function () {
         }
 
     };
-
     App.prototype.startGame = function () {
         currentPlayer = _whoStart();
         if (currentPlayer != false) {
@@ -53,14 +52,12 @@ var App = (function () {
             return false
         }
     };
-
     App.prototype.currentPlayer = function () {
         if (started !== false)
             return currentPlayer;
         else
             return false;
     };
-
     App.prototype.nextPlayer = function () {
         var current = currentPlayer.getNumber();
         if (current == (players.length - 1)) {
@@ -111,41 +108,16 @@ var App = (function () {
 
         }
     }
-
     App.prototype.getPlayersNumber = function(){
         return players.length;
     };
+    App.prototype.initGame = function(){
+
+    }
 
     return App;
 
 })();
 
 var game = new App();
-
-$(document).ready(function() {
-    $("#add_player_btn").click(function() {
-          //Get the player name inserted
-          var player = $("#player").val();
-          game.newPlayer(player);
-          //Add player to the list
-          $("#players_list ol").append('<li>'+player+'</li>');         
-          //Clear input
-          $("#player").val("");
-    });
-    $('#player').keypress(function(e){
-        if(e.which == 13){//Enter key pressed
-            $('#add_player_btn').click();//Trigger same click event
-        }
-    });
-    $("#start_btn").click(function() {
-            if(game.getPlayersNumber()>=2){
-                game.startGame();
-                game.play();
-            }else{
-                //TODO 
-                alert('Minimo dos jugadores');
-            }
-    });
-});
-
-
+$(document).bind('click', game.ui.handleCustomEvent);

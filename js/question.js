@@ -1,6 +1,6 @@
 var Question = (function () {
 
-    var bindAnswer, responsed, response,questionData;
+    var bindAnswer, responsed, response, questionData, timer;
 
     function Question(_questionData) {
         responsed = false;
@@ -14,7 +14,6 @@ var Question = (function () {
     Question.prototype.getResponse = function(){
         return response;
     }
-
     Question.prototype.printQuestion = function (handler) {
 
         var answerData, answerHTML, answerList, element, questionHTML, _i, _len, _ref;
@@ -56,9 +55,8 @@ var Question = (function () {
             }, 1000);
         }
     }
-
     bindAnswer = function (handler) {
-
+        //TODO esto tiene qu poder hacerse sin el unbind/bind
         $('#questionWrapper .answer').unbind('click').bind('click', function (event) {
             event.preventDefault();
             response = $(this).data('valid');
