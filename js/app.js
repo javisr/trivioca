@@ -1,42 +1,43 @@
 var App = (function () {
 
-    var players, dice, board, finished, started, currentPlayer;
+    //var players, dice, board, finished, started, currentPlayer;
 
     var _whoStart;
 
 
     function App() {
-        board = new Board();
-        dice = new Dice();
-        players = [];
-        finished = false;
-        started = false;
-        this.ui = new UI(this);
+        this.board = new Board();
+        this.dice = new Dice();
+        this.players = [];
+        this.finished = false;
+        this.started = false;
+        //this.loadEvents = new UI(this);
 
     }
 
     App.prototype.test = function () {
         console.log('======================= ESTADO DEL JUEGO =======================');
         console.log('PLAYERS----------------');
-        for (var i = 0; i < players.length; i++) {
-            players[i].test();
+        for (var i = 0; i < this.players.length; i++) {
+            this.players[i].test();
         }
     }
     App.prototype.newPlayer = function (name) {
-        if (started === false && name) {
+        if (this.started === false && name) {
             var player = new Player(name);
-            player.setNumber(players.length)
-            players.push(player);
+            player.setNumber(this.players.length)
+            
+            this.players.push(player);
             return true;
         } else {
             console.log('No se pudo meter el jugardor');
             return false;
         }
     };
-    _whoStart = function () {
-        var numPlayers = players.length;
+    App.prototype.whoStart = function () {
+        var numPlayers = this.players.length;
         if (numPlayers >= 2) {
-            return players[Math.floor((Math.random() * numPlayers))];
+            return this.players[Math.floor((Math.random() * numPlayers))];
         } else {
             console.log('tiene que haber un mínimo de 2 jugadores');
             return false;
@@ -44,54 +45,54 @@ var App = (function () {
 
     };
     App.prototype.startGame = function () {
-        currentPlayer = _whoStart();
-        if (currentPlayer != false) {
-            started = true;
+        this.currentPlayer = this.whoStart();
+        if (this.currentPlayer != false) {
+            this.started = true;
             return true;
         } else {
             return false
         }
     };
     App.prototype.currentPlayer = function () {
-        if (started !== false)
-            return currentPlayer;
+        if (this.started !== false)
+            return this.currentPlayer;
         else
             return false;
     };
     App.prototype.nextPlayer = function () {
-        var current = currentPlayer.getNumber();
-        if (current == (players.length - 1)) {
-            currentPlayer = players[0];
+        var current = this.currentPlayer.getNumber();
+        if (current == (this.players.length - 1)) {
+            this.currentPlayer = this.players[0];
         } else {
             current++;
-            currentPlayer = players[current];
+            this.currentPlayer = this.players[current];
         }
     };
     App.prototype.play = function () {
 
-        if (started && !finished) {
+        if (this.started && !this.finished) {
 
-            if (currentPlayer.canPlay()) {
+            if (this.currentPlayer.canPlay()) {
 
                 
-                currentPlayer.setTurn();
-                var result = currentPlayer.throwDice(dice);
+                this.currentPlayer.setTurn();
+                var result = this.currentPlayer.throwDice(this.dice);
 
                 //TODO MOVE PLAYER IN BOARD
 
-                var box = board.getBoxData(result.currentBox);
+                var box = this.board.getBoxData(result.currentBox);
 
-                var question = new Question(board.getQuestion());
+                var question = new Question(this.board.getQuestion());
 
                 var self = this;
                 var turnCallback = function () {
-                       var response = false;
+                    var response = false;
                     if (question.wasResponsed() == true) {
                         response = question.getResponse();
                     }
-                    currentPlayer.update(box, response);
+                    self.currentPlayer.update(box, response);
 
-                    if (!currentPlayer.doStillHaveTurn()) {
+                    if (!self.currentPlayer.doStillHaveTurn()) {
                         self.nextPlayer();
                     }
 
@@ -109,7 +110,7 @@ var App = (function () {
         }
     }
     App.prototype.getPlayersNumber = function(){
-        return players.length;
+        return this.players.length;
     };
     App.prototype.initGame = function(){
 
@@ -120,4 +121,3 @@ var App = (function () {
 })();
 
 var game = new App();
-$(document).bind('click', game.ui.handleCustomEvent);
