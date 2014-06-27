@@ -11,7 +11,7 @@ var App = (function () {
         this.players = [];
         this.finished = false;
         this.started = false;
-        //this.loadEvents = new UI(this);
+        this.loadEvents = new UI(this);
 
     }
 
