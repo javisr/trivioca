@@ -1,7 +1,5 @@
 var App = (function () {
 
-    //var players, dice, board, finished, started, currentPlayer;
-
     var _whoStart;
 
 
@@ -11,7 +9,7 @@ var App = (function () {
         this.players = [];
         this.finished = false;
         this.started = false;
-        this.loadEvents = new UI(this);
+        this.UI = new UI(this);
 
     }
 
@@ -98,13 +96,13 @@ var App = (function () {
 
 
                     delete question;
-                    self.play();
+                    self.UI.prepareTurn();
                 };
                 question.printQuestion(turnCallback);
 
             } else {
                 this.nextPlayer();
-                this.play();
+                this.UI.prepareTurn();
             }
 
         }
