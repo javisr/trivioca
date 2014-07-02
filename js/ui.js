@@ -11,7 +11,7 @@ var UI = (function () {
         html.on('click', '#add_player_btn', this.addPlayer)
             .on('keypress', '#player',this.enterOnPlayerInput )
             .on('click', '#no_more_players', this.startGame)
-            .on('click', '#start_turn_btn', this.startTurn)
+            .on('click', '#play_btn', this.startTurn)
 
     };
 
@@ -42,7 +42,7 @@ var UI = (function () {
 
         if (game.getPlayersNumber() >= 2) {
            game.startGame();
-           html.find('#start_turn_btn').show();
+           html.find('#play_btn').show();
             html.find('#add_users_block').remove();
         } else {
             //TODO
@@ -52,14 +52,14 @@ var UI = (function () {
     };
 
     UI.prototype.startTurn = function(){
-        var turnBtn = html.find('#start_turn_btn');
+        var turnBtn = html.find('#play_btn');
         turnBtn.prop('disabled' , true );
         html.find('#right_bar').append(clock);
         game.play();
     };
 
     UI.prototype.prepareTurn = function(){
-        var turnBtn = html.find('#start_turn_btn');
+        var turnBtn = html.find('#play_btn');
         html.find('#countdown').remove();
         html.find('#questionWrapper').html('');
         turnBtn.prop('disabled' , false );
