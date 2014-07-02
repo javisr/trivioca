@@ -1,25 +1,33 @@
 var UI = (function () {
 
     var ui, game, html;
-
+    var clock;
     function UI(_game) {
+
         game = _game;
         ui = this;
+        this.init();
         html = $('.principal-wrapper');
-        html
-            .on('click', '#add_player_btn', this.addPlayer)
+        html.on('click', '#add_player_btn', this.addPlayer)
             .on('keypress', '#player',this.enterOnPlayerInput )
             .on('click', '#start_btn', this.startGame)
 
+
     };
+
+    UI.prototype.init = function(){
+        clock = $('#countdown').remove();
+    }
 
 
     UI.prototype.addPlayer = function () {
-        if ($("#player").length > 0 && $("#players_list ol").lengh > 0) {
+        if ($("#player").length > 0 && $("#players_list ol").length > 0) {
             var player = $("#player").val();
-            game.newPlayer(player);
-            $("#players_list ol").append('<li>' + player + '</li>');
-            $("#player").val("");
+            if(player != ''){
+                game.newPlayer(player);
+                $("#players_list ol").append('<li>' + player + '</li>');
+                $("#player").val("");
+            }
         }
 
     };
@@ -42,7 +50,12 @@ var UI = (function () {
 
     };
 
+    UI.prototype.StartTurn = function(){
+
+    };
 
     return UI;
 
 })();
+
+
