@@ -58,6 +58,13 @@ var UI = (function () {
         game.play();
     };
 
+    UI.prototype.prepareTurn = function(){
+        var turnBtn = html.find('#start_turn_btn');
+        html.find('#countdown').remove();
+        html.find('#questionWrapper').html('');
+        turnBtn.prop('disabled' , false );
+    }
+
     return UI;
 
 })();
