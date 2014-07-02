@@ -215,3 +215,8 @@ aside {
       -webkit-filter: hue-rotate(360deg) contrast(95%);
     }
   }
+
+
+  #start_btn{
+      display: none;
+  }

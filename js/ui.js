@@ -10,8 +10,8 @@ var UI = (function () {
         html = $('.principal-wrapper');
         html.on('click', '#add_player_btn', this.addPlayer)
             .on('keypress', '#player',this.enterOnPlayerInput )
-            .on('click', '#start_btn', this.startGame)
-
+            .on('click', '#no_more_players', this.startGame)
+            .on('click', '#start_btn', this.startTurn)
 
     };
 
@@ -41,8 +41,9 @@ var UI = (function () {
     UI.prototype.startGame = function () {
 
         if (game.getPlayersNumber() >= 2) {
-            game.startGame();
-            game.play();
+           game.startGame();
+           html.find('#start_btn').show();
+            html.find('#add_users_block').remove();
         } else {
             //TODO
             alert('Minimo dos jugadores');
@@ -50,8 +51,12 @@ var UI = (function () {
 
     };
 
-    UI.prototype.StartTurn = function(){
+    UI.prototype.startTurn = function(){
+        game.play();
 
+
+
+        console.log('hola cabeza');
     };
 
     return UI;
