@@ -1,9 +1,11 @@
 var App = (function () {
 
-    var _whoStart;
+    var singleInstance;
 
 
     function App() {
+        if(singleInstance) return singleInstance;
+        singleInstance = this;
         this.board = new Board();
         this.dice = new Dice();
         this.players = [];
