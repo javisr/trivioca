@@ -2,13 +2,14 @@ var Player = (function () {
 
     //var currentBox, waitingTurns, haveTurn, number;
 
-    function Player(name) {
+    function Player(name, number) {
         this.haveTurn = false;
-        this.currentBox = 0;
+        this.currentBox = 1;
         this.waitingTurns = 0;
-        //this.number = n;
-
+        this.number = number + 1;
         this.name = name;
+        this.template = null;
+        this.printInBox();
 
     }
 
@@ -26,13 +27,14 @@ var Player = (function () {
         return this.number;
     }
 
-    Player.prototype.setNumber = function (_number) {
+    /*Player.prototype.setNumber = function (_number) {
         this.number = _number;
-    }
+
+    }*/
 
     Player.prototype.jumpTo = function (newBox) {
         this.currentBox = newBox;
-      //  this.haveTurn = false;
+
         return this.currentBox;
     };
 
@@ -111,13 +113,28 @@ var Player = (function () {
         }
 
         this[func](funcArgs);//currentPlayer[func](funcArgs);
+        this.printInBox();
+
     };
 
+
+
     Player.prototype.printInBox = function(coordinate){
-        /*
-        var capa_box = $("<div style='background: red;position: absolute; opacity: 0.3;top:0;left: 0;z-index: 9'>X</div>");
-        capa_box.appendTo($('.box_' + pos_box));
-        */
+
+
+        if(this.template === null){
+            this.template = $.getTemplate('tpl/player.html');
+        }
+
+        var capa_box = $("<div style='background: red;position: absolute; opacity: 0.3;top:0;left: 0;z-index: 9'>"+this.name+"</div>");
+        var box = (typeof coordinate !== 'undefined') ? $('.box_' + coordinate) : $('.box_' + this.currentBox);
+        if(box.length > 0){
+            capa_box.appendTo(box);
+        }else{
+            alert('No existe la casilla');
+        }
+
+
     }
 
 

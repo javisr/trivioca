@@ -24,9 +24,9 @@ var App = (function () {
     }
     App.prototype.newPlayer = function (name) {
         if (this.started === false && name) {
-            var player = new Player(name);
-            player.setNumber(this.players.length)
-            
+            var player = new Player(name, this.players.length);
+           // player.setNumber(this.players.length)
+         //   player.printInBox();
             this.players.push(player);
             return true;
         } else {
