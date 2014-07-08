@@ -96,7 +96,7 @@ var App = (function () {
                         self.nextPlayer();
                     }
 
-
+                    question.destroy();
                     delete question;
                     self.UI.prepareTurn();
                 };

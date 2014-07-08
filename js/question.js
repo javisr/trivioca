@@ -1,10 +1,11 @@
 var Question = (function () {
 
-    var bindAnswer, responsed, response, questionData, timer;
+    var  responsed, response, questionData;
 
     function Question(_questionData) {
         responsed = false;
         questionData = _questionData;
+        this.clockTimer =  null;
 
     }
 
@@ -33,12 +34,14 @@ var Question = (function () {
         $("#questionWrapper").html(questionHTML.html());
 
 
-        bindAnswer(handler);
-        timer(30, handler);
+        this.bindAnswer(handler);
+        this.timer(30, handler);
     };
 
-
-    timer = function (seconds, handler) {
+    Question.prototype.destroy = function(){
+        clearInterval(this.clockTimer);
+    }
+    Question.prototype.timer = function (seconds, handler) {
         $(".timer").html(seconds);
         if (seconds == 0) {
             $(".timer").html('');
@@ -50,12 +53,13 @@ var Question = (function () {
         }
         else {
             seconds--;
-            setTimeout(function(){
-                timer(seconds, handler);
+            var self = this;
+            this.clockTimer = setTimeout(function(){
+                self.timer(seconds, handler);
             }, 1000);
         }
     }
-    bindAnswer = function (handler) {
+    Question.prototype.bindAnswer = function (handler) {
         //TODO esto tiene qu poder hacerse sin el unbind/bind
         $('#questionWrapper .answer').unbind('click').bind('click', function (event) {
             event.preventDefault();
