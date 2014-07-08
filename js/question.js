@@ -1,19 +1,19 @@
 var Question = (function () {
 
-    var  responsed, response, questionData;
+    var  answered, answer, questionData;
 
     function Question(_questionData) {
-        responsed = false;
+        answered = false;
         questionData = _questionData;
         this.clockTimer =  null;
 
     }
 
-    Question.prototype.wasResponsed = function(){
-        return responsed;
+    Question.prototype.wasAnswered = function(){
+        return answered;
     }
-    Question.prototype.getResponse = function(){
-        return response;
+    Question.prototype.getAnswer = function(){
+        return answer;
     }
     Question.prototype.printQuestion = function (handler) {
 
@@ -45,8 +45,8 @@ var Question = (function () {
         $(".timer").html(seconds);
         if (seconds == 0) {
             $(".timer").html('');
-            responsed = false;
-            response = false;
+            answered = false;
+            answer = false;
             if ($.isFunction(handler)) {
                 handler();
             }
@@ -63,8 +63,8 @@ var Question = (function () {
         //TODO esto tiene qu poder hacerse sin el unbind/bind
         $('#questionWrapper .answer').unbind('click').bind('click', function (event) {
             event.preventDefault();
-            response = $(this).data('valid');
-            responsed = true;
+            answer = $(this).data('valid');
+            answered = true;
             $(this).closest("#questionWrapper").html('');
             if ($.isFunction(handler)) {
                 handler();

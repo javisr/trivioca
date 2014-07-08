@@ -87,8 +87,8 @@ var App = (function () {
                 var self = this;
                 var turnCallback = function () {
                     var response = false;
-                    if (question.wasResponsed() == true) {
-                        response = question.getResponse();
+                    if (question.wasAnswered() == true) {
+                        response = question.getAnswer();
                     }
                     self.currentPlayer.update(box, response);
 
