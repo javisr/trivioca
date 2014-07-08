@@ -60,16 +60,20 @@ var Question = (function () {
         }
     }
     Question.prototype.bindAnswer = function (handler) {
-        //TODO esto tiene qu poder hacerse sin el unbind/bind
-        $('#questionWrapper .answer').unbind('click').bind('click', function (event) {
-            event.preventDefault();
-            answer = $(this).data('valid');
-            answered = true;
-            $(this).closest("#questionWrapper").html('');
-            if ($.isFunction(handler)) {
-                handler();
-            }
-        });
+        if($('#questionWrapper').length){
+            $('#questionWrapper').off('click').on('click', '.answer',function (event) {
+                event.preventDefault();
+                answer = $(this).data('valid');
+                answered = true;
+                $(this).closest("#questionWrapper").html('');
+                if ($.isFunction(handler)) {
+                    handler();
+                }
+            });
+        }else{
+            alert('falló porque todavia no existen las preguntas');
+        }
+
 
     };
 

@@ -71,7 +71,7 @@ var App = (function () {
         this.highlightCurrentPlayer();
     };
     App.prototype.highlightCurrentPlayer = function () {
-        currentPlayerName = this.currentPlayer.name;
+         var currentPlayerName = this.currentPlayer.getPlayerName();
         $('#players_list ol li').each(function () {
             if(this.innerHTML == currentPlayerName) {
                 $(this).addClass('active');

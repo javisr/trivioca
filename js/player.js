@@ -6,7 +6,7 @@ var Player = (function () {
         this.haveTurn = false;
         this.currentBox = 1;
         this.waitingTurns = 0;
-        this.number = number + 1;
+        this.number = number;
         this.name = name;
         this.template = null;
         this.printInBox();
@@ -81,6 +81,10 @@ var Player = (function () {
         return toReturn;
     }
 
+    Player.prototype.getPlayerName = function(){
+        return this.name;
+    }
+
     Player.prototype.canPlay = function () {
         var canPlay = (this.waitingTurns === 0 ) ? true : false;
         return this.canPlay;
@@ -123,7 +127,7 @@ var Player = (function () {
 
 
         if(this.template === null){
-            this.template = $.getTemplate('tpl/player.html');
+         //  this.template = $.getTemplate('tpl/player.html');
         }
 
         var capa_box = $("<div style='background: red;position: absolute; opacity: 0.3;top:0;left: 0;z-index: 9'>"+this.name+"</div>");
