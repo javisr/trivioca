@@ -46,6 +46,7 @@ var App = (function () {
     };
     App.prototype.startGame = function () {
         this.currentPlayer = this.whoStart();
+        this.highlightCurrentPlayer();
         if (this.currentPlayer != false) {
             this.started = true;
             return true;
@@ -67,14 +68,26 @@ var App = (function () {
             current++;
             this.currentPlayer = this.players[current];
         }
+        this.highlightCurrentPlayer();
     };
+    App.prototype.highlightCurrentPlayer = function () {
+        currentPlayerName = this.currentPlayer.name;
+        $('#players_list ol li').each(function () {
+            if(this.innerHTML == currentPlayerName) {
+                $(this).addClass('active');
+            }
+            else {
+                $(this).removeClass('active');
+            }
+        });
+    }
     App.prototype.play = function () {
 
         if (this.started && !this.finished) {
 
             if (this.currentPlayer.canPlay()) {
 
-                
+
                 this.currentPlayer.setTurn();
                 var result = this.currentPlayer.throwDice(this.dice);
 

@@ -106,7 +106,7 @@ aside {
   position: relative;
   margin: 20px auto;
   }
-  
+
   .bgtimer-inner {
     position: absolute;
     top: 0;
@@ -121,7 +121,7 @@ aside {
     -webkit-transform: rotate(-45deg);
     -webkit-animation: inner 30s linear infinite;
   }
-  
+
   .bgtimer-mask {
     position: absolute;
     top: 1px;
@@ -153,7 +153,7 @@ aside {
     -webkit-transform: rotate(45deg);
     -webkit-animation: mask-two 30s linear infinite;
   }
-  
+
   @-webkit-keyframes inner {
     0% {
       -webkit-transform: rotate(-45deg);
@@ -177,7 +177,7 @@ aside {
       border-right-color: #3498db;
     }
   }
-  
+
    @-webkit-keyframes mask {
     0% {
       -webkit-transform: rotate(-45deg);
@@ -189,7 +189,7 @@ aside {
       -webkit-transform: rotate(45deg);
     }
   }
-  
+
   @-webkit-keyframes mask-two {
     0% {
       opacity: 0;
@@ -204,7 +204,7 @@ aside {
       opacity: 1;
     }
   }
-  
+
   @-webkit-keyframes whee {
     from {
       -webkit-transform: rotate(0deg);
@@ -217,6 +217,12 @@ aside {
   }
 
 
-  #play_btn{
+  #play_btn {
       display: none;
+  }
+
+/* Players */
+  #players_list li.active {
+    color: #0EAA51;
+    font-weight: bold;
   }
