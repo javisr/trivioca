@@ -3,6 +3,7 @@ var Player = (function () {
     //var currentBox, waitingTurns, haveTurn, number;
 
     function Player(name, number) {
+        this.id = 'player' + number;
         this.haveTurn = false;
         this.currentBox = 1;
         this.waitingTurns = 0;
@@ -124,19 +125,32 @@ var Player = (function () {
 
 
     Player.prototype.printInBox = function(coordinate){
-
-
-        if(this.template === null){
-         //  this.template = $.getTemplate('tpl/player.html');
-        }
-
-        var capa_box = $("<div style='background: red;position: absolute; opacity: 0.3;top:0;left: 0;z-index: 9'>"+this.name+"</div>");
         var box = (typeof coordinate !== 'undefined') ? $('.box_' + coordinate) : $('.box_' + this.currentBox);
-        if(box.length > 0){
-            capa_box.appendTo(box);
-        }else{
-            alert('No existe la casilla');
-        }
+        var whenAvailableTemplate = function(template){
+            console.log(template);
+            if(typeof  template === 'string'){
+                var tpl = $(template);
+
+                tpl.css({
+                    'background':'red',
+                    'position': 'absolute',
+                    'opacity': '0.3',
+                    'top' : '0',
+                    'left': '0',
+                    'z-index': '9'
+                });
+
+                tpl.appendTo(box);
+            }
+
+        };
+
+        var data = {
+            id : this.id,
+            name : this.name
+        };
+
+        $.getTemplate('tpl/player.html',data).done(whenAvailableTemplate);
 
 
     }
