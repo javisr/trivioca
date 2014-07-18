@@ -1,5 +1,9 @@
 /**
- * jQuery plugin to get single piece of html template.
+ * author: github:  javisr
+ *         twitter: @javisr
+ *         web:     http://javisr.net
+ *
+ * jQuery plugin for use simple templates in jQuery
  */
 
 (function ($) {
