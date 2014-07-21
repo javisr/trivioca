@@ -17,31 +17,42 @@ var Question = (function () {
     }
     Question.prototype.printQuestion = function (handler) {
 
-        var answerData, answerHTML, answerList, element, questionHTML, _i, _len, _ref;
-        questionHTML = $("#question").clone();
-        questionHTML.find(".questionText").html(questionData.questionText);
-        answerHTML = questionHTML.find(".answer").remove();
-        answerList = questionHTML.find(".answerList");
-        _ref = $.shuffle(questionData.answers);
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-            answerData = _ref[_i];
-            element = answerHTML.clone().html(answerData.text);
-            element.attr("data-valid", answerData.valid);
-            answerList.append(element);
+        var whenAvailableTemplate = function(template){
+            if(typeof  template === 'string'){
+
+                var questionHTML = $(template);
+                var answerData, answerHTML, answerList, element, _i, _len, _ref;
+
+                questionHTML.find(".questionText").html(questionData.questionText);
+                answerHTML = questionHTML.find(".answer").remove();
+                answerList = questionHTML.find(".answerList");
+                _ref = $.shuffle(questionData.answers);
+                for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+                    answerData = _ref[_i];
+                    element = answerHTML.clone().html(answerData.text);
+                    element.attr("data-valid", answerData.valid);
+                    answerList.append(element);
+                }
+                delete answersHTML;
+
+                $("#questionWrapper").html(questionHTML.html());
+
+
+                bindAnswer(handler);
+                timer(30, handler, this);
+
+            }
         }
-        delete answersHTML;
-        questionHTML.css('display', '');
-        $("#questionWrapper").html(questionHTML.html());
 
+        $.getTemplate('tpl/question.html').done(whenAvailableTemplate);
 
-        this.bindAnswer(handler);
-        this.timer(30, handler);
     };
 
     Question.prototype.destroy = function(){
         clearInterval(this.clockTimer);
     }
-    Question.prototype.timer = function (seconds, handler) {
+
+    function timer(seconds, handler, question) {
         $(".timer").html(seconds);
         if (seconds == 0) {
             $(".timer").html('');
@@ -53,13 +64,13 @@ var Question = (function () {
         }
         else {
             seconds--;
-            var self = this;
-            this.clockTimer = setTimeout(function(){
-                self.timer(seconds, handler);
+            //var self = this;
+            question.clockTimer = setTimeout(function(){
+                timer(seconds, handler, question);
             }, 1000);
         }
     }
-    Question.prototype.bindAnswer = function (handler) {
+    function bindAnswer(handler) {
         if($('#questionWrapper').length){
             $('#questionWrapper').off('click').on('click', '.answer',function (event) {
                 event.preventDefault();
