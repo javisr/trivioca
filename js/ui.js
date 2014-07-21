@@ -30,8 +30,8 @@ var UI = (function () {
         if ($("#player").length > 0 && $("#players_list ol").length > 0) {
             var player = $("#player").val();
             if(player != ''){
-                game.newPlayer(player);
-                $("#players_list ol").append('<li>' + player + '</li>');
+                player = game.newPlayer(player);
+                $("#players_list ol").append('<li id="player-item-' + player.id + '">' + player.name + '</li>');
                 $("#player").val("");
             }
         }
