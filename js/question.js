@@ -2,10 +2,11 @@ var Question = (function () {
 
     var  answered, answer, questionData;
 
+    var clockTimer;
+
     function Question(_questionData) {
         answered = false;
         questionData = _questionData;
-        this.clockTimer =  null;
 
     }
 
@@ -49,7 +50,7 @@ var Question = (function () {
     };
 
     Question.prototype.destroy = function(){
-        clearInterval(this.clockTimer);
+        clearInterval(clockTimer);
     }
 
     function timer(seconds, handler, question) {
@@ -65,7 +66,7 @@ var Question = (function () {
         else {
             seconds--;
             //var self = this;
-            question.clockTimer = setTimeout(function(){
+            clockTimer = setTimeout(function(){
                 timer(seconds, handler, question);
             }, 1000);
         }
