@@ -25,12 +25,12 @@ var App = (function () {
     App.prototype.newPlayer = function (name) {
         if (this.started === false && name) {
             var player = new Player(name, this.players.length);
-           // player.setNumber(this.players.length)
-         //   player.printInBox();
+            // player.setNumber(this.players.length)
+            // player.printInBox();
             this.players.push(player);
-            return true;
+            return player;
         } else {
-            console.log('No se pudo meter el jugardor');
+            console.log('No se pudo meter el jugador');
             return false;
         }
     };
@@ -71,10 +71,11 @@ var App = (function () {
         this.highlightCurrentPlayer();
     };
     App.prototype.highlightCurrentPlayer = function () {
-         var currentPlayerName = this.currentPlayer.getPlayerName();
+        var currentPlayer = this.currentPlayer;
+
         $('#players_list ol li').each(function () {
-            if(this.innerHTML == currentPlayerName) {
-                $(this).addClass('active');
+            if (this.id == 'player-item-' + currentPlayer.id) {
+              $(this).addClass('active');
             }
             else {
                 $(this).removeClass('active');
