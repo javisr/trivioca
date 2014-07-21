@@ -59,6 +59,7 @@ Board = (function () {
                 // Create td:
                 td = $(document.createElement('td'));
                 td.addClass('box_' + ++count);
+                td.addClass('cbox');
                 boxDiv = "<div class=\"box\"> " + count + " </div>";
                 td.append(boxDiv);
                 // Add new td to tr:

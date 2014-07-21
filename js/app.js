@@ -25,8 +25,6 @@ var App = (function () {
     App.prototype.newPlayer = function (name) {
         if (this.started === false && name) {
             var player = new Player(name, this.players.length);
-            // player.setNumber(this.players.length)
-            // player.printInBox();
             this.players.push(player);
             return player;
         } else {
@@ -122,13 +120,13 @@ var App = (function () {
             }
 
         }
-    }
+    };
     App.prototype.getPlayersNumber = function(){
         return this.players.length;
     };
     App.prototype.initGame = function(){
 
-    }
+    };
 
     return App;
 
