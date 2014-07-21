@@ -1,7 +1,7 @@
 var UI = (function () {
 
     var ui, game, html;
-    var clock;
+    var clock; //this var will load the tpl for the timer
     function UI(_game) {
 
         game = _game;
@@ -16,7 +16,13 @@ var UI = (function () {
     };
 
     UI.prototype.init = function(){
-        clock = $('#countdown').remove();
+
+        var setClock = function(template){
+            if(typeof  template === 'string'){
+                clock = $(template);
+            }
+        }
+        $.getTemplate('tpl/timer.html').done(setClock);
     }
 
 

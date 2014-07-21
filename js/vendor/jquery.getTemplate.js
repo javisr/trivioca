@@ -47,7 +47,7 @@
         }
 
         var data = {}; //Default value for data
-        if(typeof data !== 'undefined'){
+        if(typeof _data !== 'undefined'){
             data = _data;
         }
 

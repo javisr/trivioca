@@ -127,7 +127,6 @@ var Player = (function () {
     Player.prototype.printInBox = function(coordinate){
         var box = (typeof coordinate !== 'undefined') ? $('.box_' + coordinate) : $('.box_' + this.currentBox);
         var whenAvailableTemplate = function(template){
-            console.log(template);
             if(typeof  template === 'string'){
                 var tpl = $(template);
 
