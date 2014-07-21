@@ -1,7 +1,5 @@
 var Player = (function () {
 
-    //var currentBox, waitingTurns, haveTurn, number;
-
     function Player(name, number) {
         this.id = 'player' + number;
         this.haveTurn = false;
@@ -9,7 +7,6 @@ var Player = (function () {
         this.waitingTurns = 0;
         this.number = number;
         this.name = name;
-        this.template = null;
         this.printInBox();
 
     }
@@ -28,10 +25,6 @@ var Player = (function () {
         return this.number;
     }
 
-    /*Player.prototype.setNumber = function (_number) {
-        this.number = _number;
-
-    }*/
 
     Player.prototype.jumpTo = function (newBox) {
         this.currentBox = newBox;
@@ -41,13 +34,11 @@ var Player = (function () {
 
     Player.prototype.decreaseIn = function (cells) {
         this.currentBox = this.currentBox - cells;
-      //  this.haveTurn = false;
         return this.currentBox;
     };
 
     Player.prototype.increaseIn = function (cells) {
         this.currentBox = this.currentBox + cells;
-   //     this.haveTurn = false;
         return this.currentBox;
 
     }
@@ -71,10 +62,6 @@ var Player = (function () {
         //throw dice
         diceResult = dice.throw();
 
-        //increase currentBox
-      //  this.increaseIn(diceResult);
-
-
         var toReturn = {
             'diceResult': diceResult,
             'currentBox': this.currentBox
@@ -88,7 +75,7 @@ var Player = (function () {
 
     Player.prototype.canPlay = function () {
         var canPlay = (this.waitingTurns === 0 ) ? true : false;
-        return this.canPlay;
+        return canPlay;
     };
 
     Player.prototype.setTurn = function () {
@@ -106,7 +93,6 @@ var Player = (function () {
         if (_response) {
             func = boxInfo['success_function'];
             funcArgs = boxInfo['success_function_args'];
-            //meter aqui el lostturn
 
         } else {
             func = boxInfo['fail_function'];
