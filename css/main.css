@@ -230,4 +230,23 @@ aside {
 
   .cbox{
       height: 50px;
+      position: relative;
+      text-align: center;
+  }
+
+  .box{
+      border-radius: 24px;
+      height: 40px;
+      background: red;
+      width: 40px;
+      color: white;
+      text-align: center;
+      line-height: 40px;
+      z-index: 10;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 20px;
+      margin: -20px 0 0 -20px;
+      opacity: .5;
   }

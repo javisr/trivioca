@@ -151,7 +151,6 @@ var Player = (function () {
                     'float' : 'left'
                 });
                 tpl.find('span').hide();
-                console.log('aaa');
                 tpl.appendTo(box);
             }
 
