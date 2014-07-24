@@ -250,3 +250,27 @@ aside {
       margin: -20px 0 0 -20px;
       opacity: .5;
   }
+
+  .player {
+      position: relative;
+      top: 0px;
+      left: 0px;
+      z-index: 100;
+      float: left;
+      background: rgb(171, 210, 208);
+      border-radius: 24px;
+      height: 15px;
+      width: 15px;
+      color: white;
+      text-align: center;
+      line-height: 17px;
+      font-size: 10px;
+      margin: 0 5px 5px 5px;
+  }
+
+.player:hover span{
+    display: block;
+}
+.player span{
+    display: none   ;
+}

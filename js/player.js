@@ -141,16 +141,16 @@ var Player = (function () {
                 var tpl = $(template);
 
                 tpl.css({
-                    'background': me.color,
+                    'background': me.color
                     //'position': 'absolute',
-                    'position': 'relative',
+                    //'position': 'relative',
                     //'opacity': '0.3',
-                    'top' : '0',
-                    'left': '0',
-                    'z-index': '9',
-                    'float' : 'left'
+                    //'top' : '0',
+                    //'left': '0',
+                    //'z-index': '9',
+                    //'float' : 'left'
                 });
-                tpl.find('span').hide();
+
                 tpl.appendTo(box);
             }
 
